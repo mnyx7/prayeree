@@ -42,20 +42,19 @@ final class QuranRepositoryTests: XCTestCase {
     }
 
     @MainActor
-    func testCacheHitYieldsCachedThenFreshResults() async {
+    func testRepeatedFetchDoesNotPersistProviderContent() async {
         let (repository, apiClient, _) = makeRepository()
         apiClient.handler = { _ in self.makeChaptersResponse() }
         _ = await collectAll(repository.surahs(languageCode: "en"))
 
         let results = await collectAll(repository.surahs(languageCode: "en"))
 
-        XCTAssertEqual(results.count, 2)
-        if case .cached = results[0].freshness {} else { XCTFail("Expected first emission to be .cached") }
-        if case .fresh = results[1].freshness {} else { XCTFail("Expected second emission to be .fresh") }
+        XCTAssertEqual(results.count, 1)
+        if case .fresh = results[0].freshness {} else { XCTFail("Expected fresh network content") }
     }
 
     @MainActor
-    func testNetworkFailureFallsBackToStaleCache() async {
+    func testNetworkFailureDoesNotReuseOfflineProviderContent() async {
         let (repository, apiClient, _) = makeRepository()
         apiClient.handler = { _ in self.makeChaptersResponse() }
         _ = await collectAll(repository.surahs(languageCode: "en"))
@@ -63,10 +62,9 @@ final class QuranRepositoryTests: XCTestCase {
         apiClient.handler = { _ in throw NetworkError.httpStatus(500) }
         let results = await collectAll(repository.surahs(languageCode: "en"))
 
-        XCTAssertEqual(results.count, 2)
-        XCTAssertNotNil(results[0].value)
-        XCTAssertNotNil(results[1].value) // stale cache preserved despite network failure
-        XCTAssertNotNil(results[1].error)
+        XCTAssertEqual(results.count, 1)
+        XCTAssertNil(results[0].value)
+        XCTAssertNotNil(results[0].error)
     }
 
     @MainActor
@@ -125,7 +123,7 @@ final class QuranRepositoryTests: XCTestCase {
         var repeated: Ayah?
         for await result in repository.dailyAyah(date: today, translationId: 20, languageCode: "en") { repeated = result.value }
         XCTAssertEqual(repeated, first)
-        XCTAssertEqual(client.requestedEndpoints.count, count, "Reopening the page must not fetch a new daily verse")
+        XCTAssertGreaterThan(client.requestedEndpoints.count, count, "Daily selection stays deterministic while content is fetched online")
         var translated: Ayah?
         for await result in repository.dailyAyah(date: today, translationId: 85, languageCode: "en") { translated = result.value }
         XCTAssertEqual(translated?.id, first?.id)
@@ -139,5 +137,19 @@ final class QuranRepositoryTests: XCTestCase {
         let date = try XCTUnwrap(ISO8601DateFormatter().date(from: "2026-11-12T22:00:00Z"))
         XCTAssertEqual(QuranRepository.dayKey(for: date, timeZone: TimeZone(identifier: "Asia/Baku")!), "2026-11-13")
         XCTAssertEqual(QuranRepository.dayKey(for: date, timeZone: TimeZone(secondsFromGMT: 0)!), "2026-11-12")
+    }
+
+    @MainActor
+    func testReferenceOnlyWidgetDoesNotFetchVerseText() async throws {
+        let client = MockAPIClient()
+        client.handler = { endpoint in
+            guard endpoint is QuranChaptersEndpoint else { throw NetworkError.invalidResponse }
+            return self.makeChaptersResponse()
+        }
+        let reference = try await QuranService(apiClient: client).dailyAyahReference(date: Date(), languageCode: "en")
+        XCTAssertEqual(reference.surah, 1)
+        XCTAssertTrue((1...7).contains(reference.ayah))
+        XCTAssertEqual(client.requestedEndpoints.count, 1)
+        XCTAssertTrue(client.requestedEndpoints.allSatisfy { $0 is QuranChaptersEndpoint })
     }
 }

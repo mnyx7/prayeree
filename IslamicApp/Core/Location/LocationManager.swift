@@ -15,6 +15,7 @@ final class LocationManager: NSObject, LocationManaging {
     private var authorizationContinuations: [CheckedContinuation<Void, Never>] = []
     private var locationContinuations: [UUID: CheckedContinuation<Coordinates, Error>] = [:]
     private var locationTimeout: Task<Void, Never>?
+    private var recentLocation: CLLocation?
 
     var authorizationStatus: CLAuthorizationStatus {
         manager.authorizationStatus
@@ -23,6 +24,7 @@ final class LocationManager: NSObject, LocationManaging {
     override init() {
         super.init()
         manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyHundredMeters
     }
 
     func requestWhenInUseAuthorization() async {
@@ -43,6 +45,11 @@ final class LocationManager: NSObject, LocationManaging {
         default: throw LocationError.locationUnavailable
         }
         try Task.checkCancellation()
+        // Share a short-lived fix across prayer times, Settings, and Qibla.
+        if let location = recentLocation ?? manager.location,
+           Self.isUsableRecentLocation(location) {
+            return Coordinates(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        }
         let id = UUID()
         return try await withTaskCancellationHandler {
             try await withCheckedThrowingContinuation { continuation in
@@ -69,6 +76,13 @@ final class LocationManager: NSObject, LocationManaging {
                 }
             }
         }
+    }
+
+    static func isUsableRecentLocation(_ location: CLLocation, now: Date = Date()) -> Bool {
+        let age = now.timeIntervalSince(location.timestamp)
+        return age >= 0 && age <= 60 && location.horizontalAccuracy >= 0
+            && location.horizontalAccuracy <= 100
+            && CLLocationCoordinate2DIsValid(location.coordinate)
     }
 
     private func finishLocation(_ result: Result<Coordinates, Error>) {
@@ -130,9 +144,10 @@ extension LocationManager: CLLocationManagerDelegate {
     }
 
     nonisolated func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else { return }
+        guard let location = locations.last(where: { $0.horizontalAccuracy >= 0 && CLLocationCoordinate2DIsValid($0.coordinate) }) else { return }
         let coordinates = Coordinates(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         Task { @MainActor in
+            self.recentLocation = location
             self.finishLocation(.success(coordinates))
         }
     }

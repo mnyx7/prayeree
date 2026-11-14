@@ -40,7 +40,7 @@ struct QiblaCompassView: View {
                 .font(.system(size: 40))
                 .foregroundStyle(AppColor.accent)
                 .rotationEffect(.degrees(relativeAngle))
-                .animation(.easeOut(duration: 0.2), value: relativeAngle)
+                .animation(.easeOut(duration: 0.1), value: relativeAngle)
         }
         .frame(width: 280, height: 280)
         .opacity(bearing == nil ? 0.3 : 1)

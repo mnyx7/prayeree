@@ -17,14 +17,22 @@ targets:
     deploymentTarget: "17.0"
     sources:
       - path: App
+        excludes: [Info.plist, IslamicApp.entitlements]
+      - path: Shared
       - path: Core
       - path: Features
       - path: Resources
     dependencies:
       - package: Adhan
+      - target: IslamicAppWidgets
+        embed: true
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.minayayagubova.islamiccompanion
+        MARKETING_VERSION: "1.0.0"
+        CURRENT_PROJECT_VERSION: "1"
+        INFOPLIST_FILE: App/Info.plist
+        CODE_SIGN_ENTITLEMENTS: App/IslamicApp.entitlements
         SWIFT_VERSION: "5.0"
         TARGETED_DEVICE_FAMILY: "1,2"
         GENERATE_INFOPLIST_FILE: YES
@@ -32,10 +40,44 @@ targets:
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         INFOPLIST_KEY_NSLocationWhenInUseUsageDescription: "Your location is used to calculate accurate prayer times and Qibla direction."
         INFOPLIST_KEY_UISupportedInterfaceOrientations: "UIInterfaceOrientationPortrait"
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
         CODE_SIGN_STYLE: Automatic
         DEVELOPMENT_TEAM: U6XNJFRJVT
         ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS: NO
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+
+  IslamicAppWidgets:
+    type: app-extension
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: Shared
+      - path: Widgets
+        excludes: [Info.plist, IslamicAppWidgets.entitlements]
+      - path: Core/Networking
+      - path: Core/Models/Quran/Ayah.swift
+      - path: Core/Models/Quran/Surah.swift
+      - path: Core/Models/Quran/QuranTranslation.swift
+      - path: Features/Quran/QuranService.swift
+      - path: Features/Quran/QuranServiceProtocol.swift
+      - path: Features/Quran/QuranDTO.swift
+      - path: Features/Quran/QuranEndpoint.swift
+      - path: Features/Quran/QuranMapper.swift
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.minayayagubova.islamiccompanion.widgets
+        MARKETING_VERSION: "1.0.0"
+        CURRENT_PROJECT_VERSION: "1"
+        SWIFT_VERSION: "5.0"
+        TARGETED_DEVICE_FAMILY: "1,2"
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_FILE: Widgets/Info.plist
+        INFOPLIST_KEY_CFBundleDisplayName: "Islamic Companion Widgets"
+        CODE_SIGN_ENTITLEMENTS: Widgets/IslamicAppWidgets.entitlements
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: U6XNJFRJVT
+        SKIP_INSTALL: YES
+        APPLICATION_EXTENSION_API_ONLY: YES
 
   IslamicAppTests:
     type: bundle.unit-test

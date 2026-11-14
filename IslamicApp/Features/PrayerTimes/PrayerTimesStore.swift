@@ -65,6 +65,7 @@ final class PrayerTimesStore {
     private let repository: any PrayerTimesRepositoryProtocol
     private let locationManager: any LocationManaging
     private let preferencesStore: any PreferencesStore
+    private let widgetPublisher: AppWidgetPublisher?
     private let now: @Sendable () -> Date
 
     private var lastLoadTrigger: RefreshTrigger?
@@ -117,13 +118,15 @@ final class PrayerTimesStore {
         repository: any PrayerTimesRepositoryProtocol,
         locationManager: any LocationManaging,
         preferencesStore: any PreferencesStore,
-        now: @escaping @Sendable () -> Date = { Date() }
+        now: @escaping @Sendable () -> Date = { Date() },
+        widgetPublisher: AppWidgetPublisher? = nil
     ) {
         self.appStore = appStore
         self.repository = repository
         self.locationManager = locationManager
         self.preferencesStore = preferencesStore
         self.now = now
+        self.widgetPublisher = widgetPublisher
         self.state = State(
             selectedDate: now(),
             prayerTimes: nil,
@@ -286,6 +289,7 @@ final class PrayerTimesStore {
     private func apply(_ result: PrayerTimesRepositoryResult) {
         state.isRefreshing = false
         if let prayerTimes = result.prayerTimes {
+            widgetPublisher?.publishPrayerTimes(prayerTimes)
             state.prayerTimes = prayerTimes
             state.freshness = result.freshness
             state.lastUpdated = result.freshness.lastUpdated

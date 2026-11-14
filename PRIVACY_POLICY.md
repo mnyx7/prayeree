@@ -1,10 +1,8 @@
 # Islamic Companion — Privacy Policy
 
-**Draft updated:** 14 November 2026
+**Last updated:** 14 November 2026
 
 **Developer:** Minaya ([mnyx7](https://github.com/mnyx7))
-
-> Draft for the current development build. This policy must be reviewed, completed with a verified public/private contact route, and published at a publicly reachable URL before App Store release. It is not yet an effective policy for a public release. See the release requirements in the [README](README.md).
 
 ## 1. Scope
 
@@ -42,13 +40,13 @@ Adhan Swift calculates prayer times on-device; the calculation library does not 
 
 ## 4. Local storage, retention, and deletion
 
-Preferences, selected locations, saved cities, reading progress, and Quran favorite references are stored in the app's local UserDefaults. Fetched prayer and Quran content is cached as JSON files in the app's Application Support directory. These local files/settings may be included in backups according to your device and Apple's backup settings; the app does not implement its own iCloud synchronization.
+Preferences, selected locations, saved cities, reading progress, and Quran favorite references are stored in the app's local UserDefaults. Fetched prayer times are cached as JSON files in the app's Application Support directory. Quran responses are fetched online and are not saved as an offline content cache. The daily ayah widget stores a verse reference, without Arabic or translation text. Shared widget files are excluded from backup. These local files/settings may be included in backups according to your device and Apple's backup settings; the app does not implement its own iCloud synchronization.
 
 Current local preferences and saved references remain until you change/remove them or remove the app. Favorite entries can be removed through the app's star/edit controls. Removing the app removes its local app container, subject to Apple's offloading, backup, and restore behavior; offloading an app is different from deleting it.
 
-**Development-build retention limitation:** the current JSON cache has no automatic expiry or in-app clear-all control. Before public release, its Quran-content retention/offline behavior must be brought into compliance with the provider's storage and Content Sync requirements. This draft does not claim that indefinite cached Quran storage is authorized.
+Quran content from older builds is removed from the file cache on initialization. Legacy daily ayah widget text is discarded when read. Offline Quran reading requires a future approved Content Sync integration; regular API responses are used only for online display.
 
-Reading-position and favorite saves contain references and display metadata rather than additional copies of the Arabic verse or translation text. The separate fetched-content cache can contain that text.
+Reading-position and favorite saves contain references and display metadata rather than additional copies of the Arabic verse or translation text. Verse and translation text are not persisted in the fetched-content cache.
 
 ## 5. Notifications
 
@@ -56,11 +54,19 @@ Notifications are local notifications scheduled on the device through Apple's Us
 
 You can allow or disable notifications in iOS Settings and change reminder preferences in the app. Prayer reminders currently cover a rolling seven-day window refreshed when the app becomes active or relevant settings change. The daily Quran reminder repeats at 08:00 local time. Permission settings, Focus, system notification configuration, and device state can affect delivery and sound.
 
+## Home Screen widgets
+
+If you add widgets, the app and its WidgetKit extension share local display snapshots through an App Group. These include prayer times with a city label/timezone, the daily ayah reference, selected translation/language settings, and the last-read surah/ayah reference. The daily widget is reference-only until permissions are confirmed; it does not display or persist Arabic or translation text. iOS manages rendered widget snapshots. The widget prayer snapshot does not contain GPS coordinates, and the reading snapshot does not contain verse text.
+
+The extension can request chapter metadata from Quran.com / Quran Foundation to select today's ayah reference, without requesting verse text. For this widget metadata lookup, the provider receives the requested metadata/language parameters and connection information. Opening the online reader can then request verse/translation content as described above. Widget refresh timing is controlled by iOS. The extension does not request GPS or use a developer-operated widget server.
+
+Shared snapshot files are excluded from backup and protected until the first device unlock after restart. A widget may visibly reveal content or a reading reference to someone who can view your Home Screen; you can remove the widget through iOS controls. The Continue Reading widget is marked privacy-sensitive, subject to system behavior.
+
 ## 6. Copying, sharing, and support
 
 Copying an ayah writes text to the system clipboard. Clipboard availability on your other devices can depend on Apple's Universal Clipboard settings. Sharing passes the selected text to the app/service you choose, which then handles it under its own privacy terms.
 
-The app does not automatically send diagnostic reports to the developer. Information you choose to include in a support request is handled by the channel you use, such as GitHub Issues. Public issue content can be visible to other people; use a verified private contact route for sensitive requests once one is provided.
+The app does not automatically send diagnostic reports to the developer. Information you choose to include in a support request is handled by the channel you use, such as GitHub Issues. Public issue content can be visible to other people; email minaya.yagubova@icloud.com for private support or privacy requests.
 
 ## 7. Your choices
 
@@ -84,6 +90,6 @@ The current application does not provide child accounts, age profiling, advertis
 
 ## 10. Changes and contact
 
-This policy should be updated when the app's data flows, providers, retention, or features change. A published policy should state its effective date.
+This policy will be updated when the app's data flows, providers, retention, or features change. The date above identifies the latest revision.
 
-For the current developer profile and available support channels, see [CONTACT.md](CONTACT.md). A verified private support/privacy email and public policy/support URLs are still outstanding before App Store release. Do not send sensitive information in a public issue.
+Contact Minaya at [minaya.yagubova@icloud.com](mailto:minaya.yagubova@icloud.com) for support and privacy requests. See [CONTACT.md](CONTACT.md) for reporting guidance. Do not send sensitive information in a public issue.

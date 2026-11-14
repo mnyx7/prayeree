@@ -38,22 +38,25 @@ struct QuranService: QuranServiceProtocol {
     }
 
     func fetchDailyAyah(date: Date, translationId: Int, languageCode: String) async throws -> Ayah {
-        // A date selects one verse independent of visits, language, and translation.
+        let reference = try await dailyAyahReference(date: date, languageCode: languageCode)
+        let endpoint = QuranVerseByKeyEndpoint(verseKey: "\(reference.surah):\(reference.ayah)", translationId: translationId, languageCode: languageCode)
+        let response = try await apiClient.send(endpoint, decodingTo: QuranRandomVerseResponseDTO.self)
+        return QuranMapper.map(verse: response.verse, translationId: translationId)
+    }
+
+    /// The reference-only widget uses chapter metadata without fetching or retaining verse text.
+    func dailyAyahReference(date: Date, languageCode: String) async throws -> (surah: Int, ayah: Int) {
         let surahs = try await fetchSurahs(languageCode: languageCode).sorted { $0.id < $1.id }
         let total = surahs.reduce(0) { $0 + $1.versesCount }
         guard total > 0 else { throw NetworkError.invalidResponse }
         let calendar = Calendar(identifier: .gregorian)
         let day = calendar.ordinality(of: .day, in: .era, for: date) ?? 1
         var index = (day * 1543) % total
-        var key: String?
         for surah in surahs {
-            if index < surah.versesCount { key = "\(surah.id):\(index + 1)"; break }
+            if index < surah.versesCount { return (surah.id, index + 1) }
             index -= surah.versesCount
         }
-        guard let key else { throw NetworkError.invalidResponse }
-        let endpoint = QuranVerseByKeyEndpoint(verseKey: key, translationId: translationId, languageCode: languageCode)
-        let response = try await apiClient.send(endpoint, decodingTo: QuranRandomVerseResponseDTO.self)
-        return QuranMapper.map(verse: response.verse, translationId: translationId)
+        throw NetworkError.invalidResponse
     }
 
     func fetchTranslations() async throws -> [QuranTranslation] {

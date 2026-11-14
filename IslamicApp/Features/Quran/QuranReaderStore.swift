@@ -25,6 +25,7 @@ final class QuranReaderStore {
     }
 
     enum Action: Sendable {
+        case startReadingHere
         case screenAppeared
         case ayahsLoaded(QuranRepositoryResult<[Ayah]>)
         case fontScaleChanged(Double)
@@ -42,8 +43,10 @@ final class QuranReaderStore {
     private(set) var state: State
     private let repository: any QuranRepositoryProtocol
     private let preferencesStore: any PreferencesStore
+    private let widgetPublisher: AppWidgetPublisher?
     private let languageCode: String
     private var loadTask: Task<Void, Never>?
+    private(set) var savesReadingProgress: Bool
     let initialAyahNumber: Int
     let favorites: QuranFavoritesStore
 
@@ -56,8 +59,12 @@ final class QuranReaderStore {
         initialTranslation: QuranTranslation?,
         languageCode: String,
         startingAyahNumber: Int? = nil,
-        favorites: QuranFavoritesStore? = nil
+        savesReadingProgress: Bool = true,
+        favorites: QuranFavoritesStore? = nil,
+        widgetPublisher: AppWidgetPublisher? = nil
     ) {
+        self.savesReadingProgress = savesReadingProgress
+        self.widgetPublisher = widgetPublisher
         self.repository = repository
         self.preferencesStore = preferencesStore
         self.favorites = favorites ?? QuranFavoritesStore(preferencesStore: preferencesStore)
@@ -84,6 +91,10 @@ final class QuranReaderStore {
 
     func send(_ action: Action) {
         switch action {
+        case .startReadingHere:
+            savesReadingProgress = true
+            saveReadingPosition(state.currentReadingPosition ?? initialAyahNumber)
+
         case .screenAppeared:
             loadAyahs()
 
@@ -163,9 +174,11 @@ final class QuranReaderStore {
         let position = QuranReadingPosition(surah: state.surah, ayahNumberInSurah: number)
         guard position.isValid else { return }
         state.currentReadingPosition = number
+        guard savesReadingProgress else { return }
         // Write as the reader scrolls, so force-closing the app does not lose progress.
         preferencesStore.setValue(position, for: QuranReadingPosition.storageKey(for: state.surah.id))
         preferencesStore.setValue(position, for: QuranReadingPosition.lastReadKey)
+        widgetPublisher?.publishReading(position)
     }
 
     private func displayText(for ayah: Ayah) -> String {

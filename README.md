@@ -2,7 +2,7 @@
 
 A native SwiftUI app for prayer times, Qibla direction, and Quran reading, created by Minaya. Targets iPhone and iPad on iOS 17 or later, with English and Arabic localization.
 
-**Status:** active development. The latest simulator regression suite passes 125 tests. This is not a certification of App Store readiness; the release work below is still outstanding.
+**Status:** active development. The latest simulator regression suite passes 137 tests. This is not a certification of App Store readiness; the release work below is still outstanding.
 
 ## Features
 
@@ -13,6 +13,10 @@ A native SwiftUI app for prayer times, Qibla direction, and Quran reading, creat
 - **Quran favorites:** star surahs or ayahs, browse/search favorites, remove them, and open a saved ayah at its reference. Favorites store references and display metadata rather than duplicate verse text.
 - **Notifications:** local prayer reminders, a daily Quran reminder, foreground alerts, permission handling, and a test notification with feedback.
 - **Appearance:** semantic light/dark colors and system/light/dark selection.
+
+## Home Screen widgets
+
+Three WidgetKit widgets are included: **Prayer times**, **Ayah of the Day**, and **Continue reading**. They support native Home Screen sizes and open the appropriate screen or exact ayah when tapped. See [WIDGETS.md](WIDGETS.md) for sizes, data refresh behavior, Xcode previews, and required App Group signing setup.
 
 ## Open and run
 
@@ -41,6 +45,8 @@ xcodebuild test \
 | `IslamicApp/Core` | Models, networking, persistence, notifications, location, localization, and design system |
 | `IslamicApp/Features` | Prayer Times, Qibla, Quran, and Settings |
 | `IslamicApp/Resources` | Asset catalog, app icon, string catalog, previews, and dependency license |
+| `IslamicApp/Shared` | App/extension display snapshots and validated widget links |
+| `IslamicApp/Widgets` | WidgetKit extension, localized views, timelines, and entitlements |
 | `IslamicApp/Tests` | Domain, repository, store, persistence, and notification unit tests |
 | `IslamicApp/Design` | Logo explorations and previous icon assets |
 
@@ -59,13 +65,13 @@ The current legacy Quran and AlAdhan endpoint calls do not contain API keys. Thi
 
 ## Persistence and notifications
 
-Settings, selected locations, favorite cities, reading progress, and Quran favorite references are stored locally using UserDefaults. Fetched prayer/Quran content is stored as JSON in the app's Application Support cache directory. HTTP requests use an ephemeral session without URLCache persistence.
+Settings, selected locations, favorite cities, reading progress, and Quran favorite references are stored locally using UserDefaults. Fetched prayer times are stored as JSON in the app's Application Support cache directory. Quran content is fetched online without a persistent content cache. HTTP requests use an ephemeral session without URLCache persistence.
 
-**Current cache limitation:** the JSON content cache has no automatic expiry. Provider-compliant Quran retention and Content Sync remain release requirements; do not describe the current cache as licensed permanent offline storage.
+**Quran storage:** legacy Quran cache files are purged, and new Quran responses are not persisted. Offline Quran text support requires an approved Content Sync integration. The daily ayah widget displays and stores only a verse reference until permissions are confirmed, and opens the online reader when tapped.
 
 Notifications use Apple's `UserNotifications` framework. No push-notification server, Firebase account, or per-notification service fee is involved. Prayer reminders are scheduled for seven days and refreshed when the app becomes active or settings change. Without reopening the app, those prayer reminders eventually run out. The Quran reminder repeats daily at 08:00 local time. Delivery and sound depend on permission, Focus, and device notification settings.
 
-Reading progress and favorites are local to the device; there is no developer-operated account system or cross-device sync. Previously fetched content can be available without a connection, but uncached content and city searches require connectivity.
+Reading progress and favorites are local to the device; there is no developer-operated account system or cross-device sync. Prayer-time fallback remains available without a connection. Quran text and city searches require connectivity.
 
 ## Privacy and support
 
@@ -77,10 +83,10 @@ These files describe the current implementation. Review them before publishing a
 ## App Store release work still required
 
 - **Original launcher artwork:** the current launcher icon was rendered from Apple's `moon.stars` SF Symbol. Apple prohibits system-provided images, or substantially/confusingly similar artwork, in app icons/logos. Replace it with original artwork before submission. See [Xcode and Apple SDKs Agreement, section 2.10](https://images.apple.com/legal/sla/docs/xcode.pdf). SF Symbols can remain in the permitted in-app UI.
-- **Privacy manifest:** add and bundle the correct `PrivacyInfo.xcprivacy`, including a truthful approved reason for the app's UserDefaults access. See [Apple's required-reason API guidance](https://developer.apple.com/documentation/bundleresources/describing-use-of-required-reason-api).
-- **Quran provider authorization and content rights:** confirm production access, translation coverage, source attribution, and caching/offline use with Quran Foundation. Its [developer terms](https://api-docs.quran.com/legal/developer-terms/) limit ordinary API caching and require Content Sync for supported offline resources. Add provider/edition credits in the relevant app screens.
+- **Privacy manifest:** the app now bundles a UserDefaults reason declaration, and the widget has its own manifest. Review the aggregate privacy report and final data disclosures before submission. See [Apple's required-reason API guidance](https://developer.apple.com/documentation/bundleresources/describing-use-of-required-reason-api).
+- **Quran provider authorization and content rights:** confirm production access, translation coverage, source attribution, and caching/offline use with Quran Foundation. Its [developer terms](https://api-docs.quran.com/legal/developer-terms/) limit ordinary API caching and require Content Sync for supported offline resources. Provider and selected translation credits appear in Quran screens.
 - **Public privacy and support:** finalize the policy, a reachable support contact, and public URLs. Complete App Store privacy answers based on actual provider practices; do not assume that off-device API requests mean “no data collected.”
-- **Release configuration:** confirm the bundle ID and signing team, explicit version/build values, iPad orientations/multitasking, export-compliance declaration, and a signed Release archive. A passing simulator build does not establish that a distributable archive is valid.
+- **Release configuration:** confirm the bundle ID and signing team, matching app/extension version/build values (currently 1.0.0/1), App Group provisioning, iPad orientations/multitasking, export-compliance declaration, and a signed Release archive. A passing simulator build does not establish that a distributable archive is valid.
 - **Real-device and UI verification:** test notifications with the app open/backgrounded/closed, permission denial and recovery, Qibla on hardware, city switching, reader scroll restoration, favorites, large text, Arabic/RTL, offline errors, and iPad layouts. Unit tests do not cover all these interactions.
 - **Store listing:** provide accurate screenshots, age rating, description, category, support and privacy links, and review notes. Do not advertise complete offline content, permanent reminders, or guaranteed prayer-time accuracy.
 

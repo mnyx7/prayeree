@@ -75,4 +75,16 @@ final class FileCacheStoreTests: XCTestCase {
         let result = await sut.value(for: key, as: String.self)
         XCTAssertEqual(result?.value, "second")
     }
+    func testQuranContentCannotBePersistedAndLegacyCopiesArePurged() async throws {
+        let key = CacheKey(namespace: "quran.ayahs", identifier: "1_20_en")
+        let url = directory.appendingPathComponent(key.storageFileName)
+        try Data("legacy Quran content".utf8).write(to: url)
+        let store = FileCacheStore(directory: directory)
+        XCTAssertFalse(FileManager.default.fileExists(atPath: url.path))
+        await store.save("verse text", for: key)
+        let cached = await store.value(for: key, as: String.self)
+        XCTAssertNil(cached)
+        XCTAssertFalse(FileManager.default.fileExists(atPath: url.path))
+    }
+
 }

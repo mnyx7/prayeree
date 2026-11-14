@@ -198,4 +198,26 @@ final class QuranStoreTests: XCTestCase {
         XCTAssertEqual(home.state.activeSheet, .favorites)
         XCTAssertTrue(env.apiClient.requestedEndpoints.isEmpty)
     }
+
+    func testAyahWidgetDeepLinkWaitsForSurahMetadataThenTargetsExactAyah() async {
+        let env = TestEnvironmentFactory.make()
+        installStandardHandler(on: env.apiClient)
+        let store = makeStore(testEnv: env)
+        store.send(.widgetAyahRequested(1, 4))
+        try? await Task.sleep(for: .milliseconds(150))
+        XCTAssertEqual(store.state.readerRequest?.surah.id, 1)
+        XCTAssertEqual(store.state.readerRequest?.ayahNumberInSurah, 4)
+        XCTAssertFalse(store.state.readerRequestSavesProgress)
+        store.send(.readerRequestHandled)
+        XCTAssertNil(store.state.readerRequest)
+    }
+
+    func testContinueReadingWidgetWithoutProgressDoesNotFetchOrInventPosition() {
+        let env = TestEnvironmentFactory.make()
+        let store = makeStore(testEnv: env)
+        store.send(.widgetContinueReadingRequested)
+        XCTAssertNil(store.state.readerRequest)
+        XCTAssertTrue(store.state.readerRequestSavesProgress)
+        XCTAssertTrue(env.apiClient.requestedEndpoints.isEmpty)
+    }
 }

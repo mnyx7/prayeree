@@ -10,6 +10,7 @@ import SwiftUI
 struct RootTabView: View {
     let appStore: AppStore
     let environment: AppEnvironment
+    @State private var selectedTab = 0
     @State private var prayerTimesStore: PrayerTimesStore
     @State private var qiblaStore: QiblaStore
     @State private var quranStore: QuranStore
@@ -26,7 +27,8 @@ struct RootTabView: View {
                     cacheStore: environment.cacheStore
                 ),
                 locationManager: environment.locationManager,
-                preferencesStore: environment.preferencesStore
+                preferencesStore: environment.preferencesStore,
+                widgetPublisher: environment.widgetPublisher
             )
         )
         _qiblaStore = State(
@@ -42,7 +44,8 @@ struct RootTabView: View {
                     service: QuranService(apiClient: environment.apiClient),
                     cacheStore: environment.cacheStore
                 ),
-                preferencesStore: environment.preferencesStore
+                preferencesStore: environment.preferencesStore,
+                widgetPublisher: environment.widgetPublisher
             )
         )
         _settingsStore = State(
@@ -56,18 +59,35 @@ struct RootTabView: View {
     }
 
     var body: some View {
-        TabView {
+        TabView(selection: $selectedTab) {
             PrayerTimesView(store: prayerTimesStore)
+                .tag(0)
                 .tabItem { Label(LocalizedKey.PrayerTimes.tabTitle, systemImage: "sun.horizon") }
 
             QiblaView(store: qiblaStore)
+                .tag(1)
                 .tabItem { Label(LocalizedKey.Qibla.tabTitle, systemImage: "location.north.circle") }
 
             QuranView(store: quranStore)
+                .tag(2)
                 .tabItem { Label(LocalizedKey.Quran.tabTitle, systemImage: "book.closed") }
 
             SettingsView(store: settingsStore)
+                .tag(3)
                 .tabItem { Label(LocalizedKey.Settings.tabTitle, systemImage: "gearshape") }
+        }
+        .onOpenURL { url in
+            guard let route = WidgetRoute(url: url) else { return }
+            switch route {
+            case .prayerTimes: selectedTab = 0
+            case .quran: selectedTab = 2
+            case .continueReading:
+                selectedTab = 2
+                quranStore.send(.widgetContinueReadingRequested)
+            case .dailyAyah(let surah, let ayah):
+                selectedTab = 2
+                quranStore.send(.widgetAyahRequested(surah, ayah))
+            }
         }
         .tint(AppColor.accent)
         .preferredColorScheme(appStore.state.appearanceMode.colorScheme)

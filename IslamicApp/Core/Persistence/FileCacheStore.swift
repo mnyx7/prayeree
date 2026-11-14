@@ -18,6 +18,14 @@ actor FileCacheStore: CacheStore {
     init(directory: URL = FileCacheStore.defaultDirectory()) {
         self.directory = directory
         try? FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        // Remove legacy Quran content copies before any cache reads.
+        for url in (try? FileManager.default.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil)) ?? [] {
+            if url.lastPathComponent.hasPrefix("quran.") { try? FileManager.default.removeItem(at: url) }
+        }
+        var excludedDirectory = directory
+        var flags = URLResourceValues()
+        flags.isExcludedFromBackup = true
+        try? excludedDirectory.setResourceValues(flags)
     }
 
     static func defaultDirectory() -> URL {
@@ -26,11 +34,13 @@ actor FileCacheStore: CacheStore {
     }
 
     func value<Value: Codable & Sendable>(for key: CacheKey, as type: Value.Type) async -> CachedValue<Value>? {
-        guard let data = try? Data(contentsOf: fileURL(for: key)) else { return nil }
+        guard !key.namespace.hasPrefix("quran."),
+              let data = try? Data(contentsOf: fileURL(for: key)) else { return nil }
         return try? decoder.decode(CachedValue<Value>.self, from: data)
     }
 
     func save<Value: Codable & Sendable>(_ value: Value, for key: CacheKey) async {
+        guard !key.namespace.hasPrefix("quran.") else { return }
         let cached = CachedValue(value: value, fetchedAt: Date())
         guard let data = try? encoder.encode(cached) else { return }
         try? data.write(to: fileURL(for: key), options: .atomic)

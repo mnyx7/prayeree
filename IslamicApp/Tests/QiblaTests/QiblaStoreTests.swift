@@ -90,4 +90,17 @@ final class QiblaStoreTests: XCTestCase {
         XCTAssertNotNil(store.state.errorMessage)
         XCTAssertEqual(store.state.loadingState, .failed)
     }
+    func testLocationReuseRequiresRecentAccurateFix() {
+        let now = Date()
+        func fix(age: TimeInterval, accuracy: CLLocationAccuracy) -> CLLocation {
+            CLLocation(coordinate: CLLocationCoordinate2D(latitude: 40.4, longitude: 49.9),
+                       altitude: 0, horizontalAccuracy: accuracy, verticalAccuracy: -1,
+                       timestamp: now.addingTimeInterval(-age))
+        }
+        XCTAssertTrue(LocationManager.isUsableRecentLocation(fix(age: 30, accuracy: 50), now: now))
+        XCTAssertFalse(LocationManager.isUsableRecentLocation(fix(age: 61, accuracy: 50), now: now))
+        XCTAssertFalse(LocationManager.isUsableRecentLocation(fix(age: 1, accuracy: 500), now: now))
+        XCTAssertFalse(LocationManager.isUsableRecentLocation(fix(age: 1, accuracy: -1), now: now))
+        XCTAssertFalse(LocationManager.isUsableRecentLocation(fix(age: -1, accuracy: 50), now: now))
+    }
 }

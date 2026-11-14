@@ -10,6 +10,7 @@
 /// properties — never by instantiating a concrete service themselves.
 @MainActor
 final class AppEnvironment {
+    let widgetPublisher: AppWidgetPublisher?
     let apiClient: any APIClientProtocol
     let cacheStore: any CacheStore
     let preferencesStore: any PreferencesStore
@@ -29,8 +30,10 @@ final class AppEnvironment {
         qiblaCalculator: any QiblaCalculating,
         notificationManager: any NotificationManaging,
         prayerNotificationScheduler: any PrayerNotificationScheduling,
-        quranNotificationScheduler: any QuranNotificationScheduling
+        quranNotificationScheduler: any QuranNotificationScheduling,
+        widgetPublisher: AppWidgetPublisher? = nil
     ) {
+        self.widgetPublisher = widgetPublisher
         self.apiClient = apiClient
         self.cacheStore = cacheStore
         self.preferencesStore = preferencesStore
@@ -44,16 +47,20 @@ final class AppEnvironment {
 
     static func live() -> AppEnvironment {
         let notificationManager = NotificationManager()
+        let preferences = UserDefaultsPreferencesStore()
+        let publisher = AppWidgetPublisher()
+        publisher.seed(preferences: preferences)
         return AppEnvironment(
             apiClient: APIClient(),
             cacheStore: FileCacheStore(),
-            preferencesStore: UserDefaultsPreferencesStore(),
+            preferencesStore: preferences,
             locationManager: LocationManager(),
             compassManager: CompassManager(),
             qiblaCalculator: QiblaCalculator(),
             notificationManager: notificationManager,
             prayerNotificationScheduler: PrayerNotificationScheduler(notificationManager: notificationManager),
-            quranNotificationScheduler: QuranNotificationScheduler(notificationManager: notificationManager)
+            quranNotificationScheduler: QuranNotificationScheduler(notificationManager: notificationManager),
+            widgetPublisher: publisher
         )
     }
 }

@@ -148,4 +148,44 @@ final class QuranReaderStoreTests: XCTestCase {
             preferencesStore: env.preferencesStore, initialTranslation: translation, languageCode: "en", startingAyahNumber: 2)
         XCTAssertEqual(reader.initialAyahNumber, 2)
     }
+
+    func testDailyAyahPreviewPreservesProgressEvenWithinSameSurah() {
+        let env = TestEnvironmentFactory.make()
+        makeStore(testEnv: env).send(.readingPositionChanged(5))
+        let preview = makePreview(env: env)
+        XCTAssertEqual(preview.initialAyahNumber, 2)
+        preview.send(.readingPositionChanged(2))
+        preview.send(.ayahAppeared(Ayah(surahNumber: 1, ayahNumberInSurah: 3, arabicText: "", translation: nil, translationId: nil)))
+        XCTAssertEqual(preview.state.currentReadingPosition, 3)
+        XCTAssertEqual(makeStore(testEnv: env).initialAyahNumber, 5)
+        XCTAssertEqual(env.preferencesStore.value(for: QuranReadingPosition.lastReadKey, as: QuranReadingPosition.self)?.ayahNumberInSurah, 5)
+    }
+
+    func testPreviewDoesNotCreateContinueReadingPosition() {
+        let env = TestEnvironmentFactory.make()
+        makePreview(env: env).send(.readingPositionChanged(3))
+        XCTAssertNil(env.preferencesStore.value(for: QuranReadingPosition.lastReadKey, as: QuranReadingPosition.self))
+        XCTAssertNil(env.preferencesStore.value(for: QuranReadingPosition.storageKey(for: surah.id), as: QuranReadingPosition.self))
+    }
+
+    func testExplicitlyContinuingFromPreviewStartsSavingAtVisibleAyah() {
+        let env = TestEnvironmentFactory.make()
+        makeStore(testEnv: env).send(.readingPositionChanged(5))
+        let preview = makePreview(env: env)
+        preview.send(.readingPositionChanged(3))
+        preview.send(.startReadingHere)
+        XCTAssertTrue(preview.savesReadingProgress)
+        XCTAssertEqual(makeStore(testEnv: env).initialAyahNumber, 3)
+        preview.send(.readingPositionChanged(4))
+        XCTAssertEqual(makeStore(testEnv: env).initialAyahNumber, 4)
+        XCTAssertEqual(env.preferencesStore.value(for: QuranReadingPosition.lastReadKey, as: QuranReadingPosition.self)?.ayahNumberInSurah, 4)
+    }
+
+    private func makePreview(env: TestEnvironment) -> QuranReaderStore {
+        QuranReaderStore(surah: surah,
+            repository: QuranRepository(service: QuranService(apiClient: env.apiClient), cacheStore: env.cacheStore),
+            preferencesStore: env.preferencesStore, initialTranslation: translation, languageCode: "en",
+            startingAyahNumber: 2, savesReadingProgress: false)
+    }
+
 }

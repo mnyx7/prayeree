@@ -102,7 +102,16 @@ private struct QuranReadingContent: View {
             store.send(.readingPositionChanged(number))
         }
         .safeAreaInset(edge: .bottom) {
-            Label(String(localized: LocalizedKey.Quran.progressSaved), systemImage: "checkmark.circle")
+            VStack(spacing: 4) {
+                if store.savesReadingProgress {
+                    Label(String(localized: LocalizedKey.Quran.progressSaved), systemImage: "checkmark.circle")
+                } else {
+                    Text("Your reading place is preserved")
+                    Button("Continue reading from here") { store.send(.startReadingHere) }
+                        .buttonStyle(.bordered)
+                }
+                QuranCreditsView(translation: store.state.selectedTranslation)
+            }
                 .font(.caption)
                 .foregroundStyle(AppColor.textSecondary)
                 .frame(maxWidth: .infinity)

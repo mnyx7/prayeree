@@ -27,6 +27,8 @@ final class QuranStore {
         var activeSheet: ActiveSheet?
         var errorMessage: String?
         var recentSurahs: [Surah]
+        var readerRequestSavesProgress = true
+        var readerRequest: QuranReadingPosition? = nil
         var lastReadingPosition: QuranReadingPosition? = nil
     }
 
@@ -41,6 +43,9 @@ final class QuranStore {
     }
 
     enum Action: Sendable {
+        case widgetContinueReadingRequested
+        case widgetAyahRequested(Int, Int)
+        case readerRequestHandled
         case favoritesTapped
         case ayahFavoriteToggled(Ayah)
         case dailyAyahRefreshRequested
@@ -69,6 +74,9 @@ final class QuranStore {
 
     private(set) var state: State
     let favorites: QuranFavoritesStore
+    private let widgetPublisher: AppWidgetPublisher?
+    private var pendingWidgetAyah: (Int, Int)?
+    private var dailyRequestDate = Date()
     private let repository: any QuranRepositoryProtocol
     private let preferencesStore: any PreferencesStore
     let languageCode: String
@@ -82,7 +90,8 @@ final class QuranStore {
     private static let recentSurahsKey = "quran.recentSurahs"
     private static let maxRecents = 5
 
-    init(repository: any QuranRepositoryProtocol, preferencesStore: any PreferencesStore, locale: Locale = .current) {
+    init(repository: any QuranRepositoryProtocol, preferencesStore: any PreferencesStore, locale: Locale = .current, widgetPublisher: AppWidgetPublisher? = nil) {
+        self.widgetPublisher = widgetPublisher
         self.repository = repository
         self.preferencesStore = preferencesStore
         self.favorites = QuranFavoritesStore(preferencesStore: preferencesStore)
@@ -109,6 +118,20 @@ final class QuranStore {
 
     func send(_ action: Action) {
         switch action {
+        case .widgetContinueReadingRequested:
+            refreshReadingProgress()
+            state.readerRequestSavesProgress = true
+            state.readerRequest = state.lastReadingPosition
+
+        case .widgetAyahRequested(let surah, let ayah):
+            guard (1...114).contains(surah), (1...286).contains(ayah) else { return }
+            pendingWidgetAyah = (surah, ayah)
+            fulfillWidgetAyahRequest()
+            if pendingWidgetAyah != nil { loadSurahsIfNeeded(force: true) }
+
+        case .readerRequestHandled:
+            state.readerRequest = nil
+
         case .favoritesTapped:
             state.activeSheet = .favorites
 
@@ -154,6 +177,7 @@ final class QuranStore {
                     preferencesStore.setValue(position, for: QuranReadingPosition.storageKey(for: surah.id))
                     preferencesStore.setValue(position, for: QuranReadingPosition.lastReadKey)
                     state.lastReadingPosition = position
+                    widgetPublisher?.publishReading(position)
                 }
             }
 
@@ -165,6 +189,7 @@ final class QuranStore {
             state.selectedTranslation = translation
             state.readingPreferences.preferredTranslationId = translation.id
             persistReadingPreferences()
+            widgetPublisher?.publishQuranPreferences(translation: translation, languageCode: languageCode)
             if state.selectedSurah != nil { loadAyahs() }
             loadDailyAyah()
 
@@ -174,6 +199,7 @@ final class QuranStore {
         case .surahsLoaded(let result):
             if let surahs = result.value {
                 state.surahs = surahs
+                fulfillWidgetAyahRequest()
                 state.freshness = result.freshness
                 state.lastUpdated = result.freshness.lastUpdated
                 state.loadingState = .loaded
@@ -204,6 +230,7 @@ final class QuranStore {
                 let translation = translations.first { $0.id == translationId }
                     ?? translations.first { $0.id == QuranTranslation.defaultID } ?? translations.first
                 state.selectedTranslation = translation
+                widgetPublisher?.publishQuranPreferences(translation: translation, languageCode: languageCode)
                 state.readingPreferences.preferredTranslationId = translation?.id
                 persistReadingPreferences()
                 if state.selectedSurah != nil { loadAyahs() }
@@ -212,6 +239,9 @@ final class QuranStore {
 
         case .dailyAyahLoaded(let result):
             state.dailyAyah = result.value
+            if let ayah = result.value {
+                widgetPublisher?.publishAyah(ayah, date: dailyRequestDate, translation: state.selectedTranslation, languageCode: languageCode)
+            }
 
         case .readingSettingsTapped:
             state.activeSheet = .readingSettings
@@ -273,7 +303,8 @@ final class QuranStore {
     private func loadDailyAyah() {
         dailyAyahTask?.cancel()
         let translationId = state.selectedTranslation?.id ?? QuranTranslation.defaultID
-        let stream = repository.dailyAyah(date: Date(), translationId: translationId, languageCode: languageCode)
+        dailyRequestDate = Date()
+        let stream = repository.dailyAyah(date: dailyRequestDate, translationId: translationId, languageCode: languageCode)
         dailyAyahTask = Task { [weak self] in
             for await result in stream {
                 guard let self, !Task.isCancelled else { return }
@@ -296,13 +327,20 @@ final class QuranStore {
         }
     }
 
+    /// Uses the existing display-only content pipeline; search does not persist Quran text.
+    func searchAyahs(in surah: Surah) -> AsyncStream<QuranRepositoryResult<[Ayah]>> {
+        repository.ayahs(surahNumber: surah.id,
+                         translationId: state.selectedTranslation?.id ?? QuranTranslation.defaultID,
+                         languageCode: languageCode)
+    }
+
     // MARK: - Reader factory
 
     /// QuranReaderStore is scoped to the reader's navigation lifetime (built
     /// fresh per surah), unlike the four tab-level Stores which live for the
     /// app's lifetime — composed here from already-injected dependencies,
     /// never raw concrete types.
-    func makeReaderStore(for surah: Surah, startingAyahNumber: Int? = nil) -> QuranReaderStore {
+    func makeReaderStore(for surah: Surah, startingAyahNumber: Int? = nil, savesReadingProgress: Bool = true) -> QuranReaderStore {
         QuranReaderStore(
             surah: surah,
             repository: repository,
@@ -310,11 +348,24 @@ final class QuranStore {
             initialTranslation: state.selectedTranslation,
             languageCode: languageCode,
             startingAyahNumber: startingAyahNumber,
-            favorites: favorites
+            savesReadingProgress: savesReadingProgress,
+            favorites: favorites,
+            widgetPublisher: widgetPublisher
         )
     }
 
     // MARK: - Helpers
+
+    private func fulfillWidgetAyahRequest() {
+        guard let (number, ayah) = pendingWidgetAyah,
+              let surah = state.surahs.first(where: { $0.id == number }) else { return }
+        let request = QuranReadingPosition(surah: surah, ayahNumberInSurah: ayah)
+        if request.isValid {
+            state.readerRequestSavesProgress = false
+            state.readerRequest = request
+        }
+        pendingWidgetAyah = nil
+    }
 
     private func refreshReadingProgress() {
         let position = preferencesStore.value(for: QuranReadingPosition.lastReadKey, as: QuranReadingPosition.self)

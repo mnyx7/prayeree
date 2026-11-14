@@ -15,7 +15,7 @@ struct QuranBookmark: Identifiable, Codable, Equatable, Hashable, Sendable {
 }
 
 /// Stores only a reference and display metadata, never Quran or translation text.
-struct QuranReadingPosition: Codable, Equatable, Sendable {
+struct QuranReadingPosition: Codable, Equatable, Hashable, Sendable {
     let surah: Surah
     let ayahNumberInSurah: Int
 

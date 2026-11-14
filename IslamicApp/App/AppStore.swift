@@ -85,6 +85,7 @@ final class AppStore {
             persistCities()
 
         case .appLaunched:
+            environment.widgetPublisher?.publishPrayers(state: state)
             Task { await refreshNotificationAuthorizationStatus() }
 
         case .locationSourceModeChanged(let mode):
@@ -122,6 +123,7 @@ final class AppStore {
             recentCities = Array(recentCities.prefix(5))
             persistCities()
             persist()
+            environment.widgetPublisher?.publishPrayers(state: state)
 
         case .coordinatesResolved(let coordinates):
             state.resolvedCoordinates = coordinates
@@ -180,6 +182,7 @@ final class AppStore {
     /// PrayerNotificationScheduler.reschedule itself cancels-and-replaces
     /// existing requests, so this never produces duplicates.
     private func rescheduleNotificationsIfNeeded() {
+        environment.widgetPublisher?.publishPrayers(state: state)
         rescheduleTask?.cancel()
         guard [.authorized, .provisional, .ephemeral].contains(state.notificationAuthorizationStatus) else { return }
         let coordinates = state.resolvedCoordinates

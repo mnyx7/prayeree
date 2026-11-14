@@ -14,6 +14,7 @@ final class CompassManager: NSObject, CompassManaging {
     // heading updates (continuous, tab-scoped) have a different lifecycle
     // than one-shot location resolution.
     private let manager = CLLocationManager()
+    private var streamID = UUID()
     private var continuation: AsyncStream<CompassHeading>.Continuation?
 
     override init() {
@@ -27,6 +28,8 @@ final class CompassManager: NSObject, CompassManaging {
                 continuation.finish()
                 return
             }
+            let streamID = UUID()
+            self.streamID = streamID
             self.continuation = continuation
             guard CLLocationManager.headingAvailable() else {
                 continuation.finish()
@@ -36,7 +39,8 @@ final class CompassManager: NSObject, CompassManaging {
             self.manager.startUpdatingHeading()
             continuation.onTermination = { [weak self] _ in
                 Task { @MainActor in
-                    self?.manager.stopUpdatingHeading()
+                    guard let self, self.streamID == streamID else { return }
+                    self.manager.stopUpdatingHeading()
                 }
             }
         }

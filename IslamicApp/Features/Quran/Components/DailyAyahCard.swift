@@ -1,9 +1,19 @@
+//
+//  DailyAyahCard.swift
+//  Islamic Companion
+//
+//  Created by Minaya on 14/11/2026.
+//
+
 import SwiftUI
 
 struct DailyAyahCard: View {
     let ayah: Ayah
     let onOpenReader: () -> Void
     let onShare: () -> Void
+    var isFavorite = false
+    var canFavorite = false
+    var onFavorite: () -> Void = {}
 
     var body: some View {
         VStack(alignment: .leading, spacing: AppSpacing.small) {
@@ -30,6 +40,11 @@ struct DailyAyahCard: View {
                     .font(AppTypography.caption2)
                     .foregroundStyle(AppColor.textSecondary)
                 Spacer()
+                Button(action: onFavorite) {
+                    Image(systemName: isFavorite ? "star.fill" : "star")
+                }
+                .disabled(!canFavorite)
+                .accessibilityLabel(Text(isFavorite ? LocalizedKey.Quran.removeFavorite : LocalizedKey.Quran.addFavorite))
                 Button(String(localized: LocalizedKey.Quran.openInReader), action: onOpenReader)
                     .font(AppTypography.caption.weight(.semibold))
                 ShareLink(item: shareText) {

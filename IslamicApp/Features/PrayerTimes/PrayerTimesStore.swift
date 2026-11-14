@@ -1,3 +1,10 @@
+//
+//  PrayerTimesStore.swift
+//  Islamic Companion
+//
+//  Created by Minaya on 14/11/2026.
+//
+
 import Foundation
 import Observation
 
@@ -61,6 +68,7 @@ final class PrayerTimesStore {
     private let now: @Sendable () -> Date
 
     private var lastLoadTrigger: RefreshTrigger?
+    private var lastLoadDate: DateComponents?
     private var loadTask: Task<Void, Never>?
     private var countdownTask: Task<Void, Never>?
     private var citySearchTask: Task<Void, Never>?
@@ -248,8 +256,17 @@ final class PrayerTimesStore {
         if state.prayerTimes == nil { state.loadingState = .loading }
         state.errorMessage = nil
 
+        let calendar = Calendar(identifier: .gregorian)
+        let dateComponents = calendar.dateComponents([.year, .month, .day], from: state.selectedDate)
+        if lastLoadTrigger != refreshTrigger || lastLoadDate != dateComponents {
+            state.prayerTimes = nil
+            state.nextPrayer = nil
+            state.remainingCountdown = 0
+            state.freshness = .none
+            state.loadingState = .loading
+        }
         lastLoadTrigger = refreshTrigger
-        let dateComponents = Calendar.current.dateComponents([.year, .month, .day], from: state.selectedDate)
+        lastLoadDate = dateComponents
         let stream = repository.prayerTimes(
             dateComponents: dateComponents,
             coordinates: coordinates,
@@ -336,6 +353,7 @@ final class PrayerTimesStore {
             await self.locationManager.requestWhenInUseAuthorization()
             do {
                 let coordinates = try await self.locationManager.requestCurrentLocation()
+                guard case .automatic = self.locationSourceMode else { return }
                 self.send(.locationResolved(coordinates))
                 if let city = try? await self.locationManager.reverseGeocodedCity(for: coordinates) {
                     self.appStore.send(.cityResolved(city))

@@ -1,3 +1,10 @@
+//
+//  NotificationSoundPicker.swift
+//  Islamic Companion
+//
+//  Created by Minaya on 14/11/2026.
+//
+
 import SwiftUI
 
 // V1 offers only "Default" — a custom UNNotificationSound requires a bundled

@@ -1,3 +1,10 @@
+//
+//  CompassManaging.swift
+//  Islamic Companion
+//
+//  Created by Minaya on 14/11/2026.
+//
+
 /// Heading updates are continuous (unlike the one-shot LocationManaging),
 /// so this is modeled as an AsyncStream the Store consumes in a Task started
 /// on `.screenAppeared` and torn down on `.screenDisappeared`.

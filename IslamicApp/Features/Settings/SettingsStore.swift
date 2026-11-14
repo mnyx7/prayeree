@@ -1,3 +1,10 @@
+//
+//  SettingsStore.swift
+//  Islamic Companion
+//
+//  Created by Minaya on 14/11/2026.
+//
+
 import Foundation
 import Observation
 import UserNotifications
@@ -187,7 +194,8 @@ final class SettingsStore {
         Task { [weak self] in
             guard let self else { return }
             await self.locationManager.requestWhenInUseAuthorization()
-            guard let coordinates = try? await self.locationManager.requestCurrentLocation() else { return }
+            guard let coordinates = try? await self.locationManager.requestCurrentLocation(),
+                  case .automatic = self.locationSourceMode else { return }
             self.appStore.send(.coordinatesResolved(coordinates))
             if let city = try? await self.locationManager.reverseGeocodedCity(for: coordinates) {
                 self.appStore.send(.cityResolved(city))

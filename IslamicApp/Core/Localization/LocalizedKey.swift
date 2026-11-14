@@ -1,3 +1,10 @@
+//
+//  LocalizedKey.swift
+//  Islamic Companion
+//
+//  Created by Minaya on 14/11/2026.
+//
+
 import Foundation
 
 /// Every user-facing string in the app, namespaced by screen. Each key is a
@@ -147,6 +154,13 @@ enum LocalizedKey {
     }
 
     enum Quran {
+        static let noFavorites = LocalizedStringResource("quran.no_favorites", defaultValue: "Tap the star beside a surah or ayah to save it here.", table: "Localizable")
+        static let favoriteAyahs = LocalizedStringResource("quran.favorite_ayahs", defaultValue: "Favorite Ayahs", table: "Localizable")
+        static let favoriteSurahs = LocalizedStringResource("quran.favorite_surahs", defaultValue: "Favorite Surahs", table: "Localizable")
+        static let removeFavorite = LocalizedStringResource("quran.remove_favorite", defaultValue: "Remove from favorites", table: "Localizable")
+        static let addFavorite = LocalizedStringResource("quran.add_favorite", defaultValue: "Add to favorites", table: "Localizable")
+        static let continueReading = LocalizedStringResource("quran.continue_reading", defaultValue: "Continue reading", table: "Localizable")
+        static let progressSaved = LocalizedStringResource("quran.progress_saved", defaultValue: "Reading progress saved automatically", table: "Localizable")
         static let tabTitle = LocalizedStringResource("quran.tab_title", defaultValue: "Quran", table: "Localizable")
         static let ayahOfTheDay = LocalizedStringResource("quran.ayah_of_the_day", defaultValue: "Ayah of the Day", table: "Localizable")
         static let openInReader = LocalizedStringResource("quran.open_in_reader", defaultValue: "Open in Reader", table: "Localizable")

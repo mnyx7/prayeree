@@ -1,3 +1,10 @@
+//
+//  PrayerTimesEndpoint.swift
+//  Islamic Companion
+//
+//  Created by Minaya on 14/11/2026.
+//
+
 import Foundation
 
 struct PrayerTimesEndpoint: Endpoint {
@@ -19,7 +26,7 @@ struct PrayerTimesEndpoint: Endpoint {
         [
             URLQueryItem(name: "latitude", value: String(coordinates.latitude)),
             URLQueryItem(name: "longitude", value: String(coordinates.longitude)),
-            URLQueryItem(name: "method", value: String(calculationMethod.rawValue)),
+            URLQueryItem(name: "method", value: String(calculationMethod.aladhanID)),
             URLQueryItem(name: "school", value: String(madhab.rawValue)),
             URLQueryItem(name: "tune", value: Self.tuneString(for: adjustment))
         ]

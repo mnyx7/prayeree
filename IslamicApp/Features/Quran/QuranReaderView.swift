@@ -1,3 +1,10 @@
+//
+//  QuranReaderView.swift
+//  Islamic Companion
+//
+//  Created by Minaya on 14/11/2026.
+//
+
 import SwiftUI
 
 struct QuranReaderView: View {
@@ -8,30 +15,18 @@ struct QuranReaderView: View {
     }
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: AppSpacing.xLarge) {
-                switch content {
-                case .loaded:
-                    ForEach(store.state.ayahs) { ayah in
-                        AyahCardView(
-                            ayah: ayah,
-                            readingMode: store.state.readingMode,
-                            fontScale: store.state.fontScale,
-                            onCopy: { store.send(.copyTapped(ayah)) },
-                            onShare: { store.send(.shareTapped(ayah)) }
-                        )
-                        .onAppear { store.send(.ayahAppeared(ayah)) }
-                    }
-                case .loading:
-                    ProgressView()
-                        .padding(.top, 60)
-                case .error(let message):
-                    AppErrorState(message: message) {
-                        store.send(.retryTapped)
-                    }
-                }
+        Group {
+            switch content {
+            case .loaded:
+                QuranReadingContent(store: store)
+            case .loading:
+                ProgressView()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            case .error(let message):
+                AppErrorState(message: message) { store.send(.retryTapped) }
+                    .padding()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
-            .padding()
         }
         // A dedicated, slightly-warmer background than the rest of the app —
         // the reading area is meant to feel like its own spacious, focused
@@ -40,7 +35,12 @@ struct QuranReaderView: View {
         .navigationTitle(store.state.surah.transliteratedName)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .primaryAction) {
+            ToolbarItemGroup(placement: .primaryAction) {
+                Button { store.send(.surahFavoriteToggled) } label: {
+                    Image(systemName: store.favorites.isFavorite(store.state.surah) ? "star.fill" : "star")
+                }
+                .accessibilityLabel(Text(store.favorites.isFavorite(store.state.surah) ? LocalizedKey.Quran.removeFavorite : LocalizedKey.Quran.addFavorite))
+                .foregroundStyle(AppColor.accent)
                 Button {
                     let nextMode: QuranReadingMode = store.state.readingMode == .arabicOnly ? .arabicWithTranslation : .arabicOnly
                     store.send(.readingModeChanged(nextMode))
@@ -61,5 +61,53 @@ struct QuranReaderView: View {
         if !store.state.ayahs.isEmpty { return .loaded }
         if let errorMessage = store.state.errorMessage { return .error(errorMessage) }
         return .loading
+    }
+}
+
+/// Created only after the ayahs load, so loading placeholders cannot reset
+/// the saved scroll target. Lazy layout reports the visible ayah, not preloaded cards.
+private struct QuranReadingContent: View {
+    let store: QuranReaderStore
+    @State private var visibleAyahNumber: Int?
+
+    init(store: QuranReaderStore) {
+        self.store = store
+        let target = store.state.ayahs.first { $0.ayahNumberInSurah == store.initialAyahNumber }
+            ?? store.state.ayahs.first
+        _visibleAyahNumber = State(initialValue: target?.ayahNumberInSurah)
+    }
+
+    var body: some View {
+        ScrollView {
+            LazyVStack(alignment: .leading, spacing: AppSpacing.xLarge) {
+                ForEach(store.state.ayahs) { ayah in
+                    AyahCardView(
+                        ayah: ayah,
+                        readingMode: store.state.readingMode,
+                        fontScale: store.state.fontScale,
+                        onCopy: { store.send(.copyTapped(ayah)) },
+                        onShare: { store.send(.shareTapped(ayah)) },
+                        isFavorite: store.favorites.isFavorite(ayah),
+                        onFavorite: { store.send(.bookmarkTapped(ayah)) }
+                    )
+                    .id(ayah.ayahNumberInSurah)
+                }
+            }
+            .scrollTargetLayout()
+            .padding()
+        }
+        .scrollPosition(id: $visibleAyahNumber, anchor: .top)
+        .onChange(of: visibleAyahNumber, initial: true) { _, number in
+            guard let number else { return }
+            store.send(.readingPositionChanged(number))
+        }
+        .safeAreaInset(edge: .bottom) {
+            Label(String(localized: LocalizedKey.Quran.progressSaved), systemImage: "checkmark.circle")
+                .font(.caption)
+                .foregroundStyle(AppColor.textSecondary)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, AppSpacing.small)
+                .background(AppColor.quranReadingBackground)
+        }
     }
 }

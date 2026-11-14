@@ -1,3 +1,10 @@
+//
+//  PrayerNotificationScheduling.swift
+//  Islamic Companion
+//
+//  Created by Minaya on 14/11/2026.
+//
+
 /// Takes an already-computed rolling window of PrayerTimes rather than
 /// fetching it — Core/Notifications must not depend on Features/PrayerTimes,
 /// so the caller (a future app-level coordinator) supplies the data.

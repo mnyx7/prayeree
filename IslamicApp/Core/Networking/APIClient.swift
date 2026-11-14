@@ -1,12 +1,26 @@
+//
+//  APIClient.swift
+//  Islamic Companion
+//
+//  Created by Minaya on 14/11/2026.
+//
+
 import Foundation
 
 final class APIClient: APIClientProtocol {
     private let session: URLSession
     private let decoder: JSONDecoder
 
-    init(session: URLSession = .shared, decoder: JSONDecoder = JSONDecoder()) {
+    init(session: URLSession = APIClient.makeSession(), decoder: JSONDecoder = JSONDecoder()) {
         self.session = session
         self.decoder = decoder
+    }
+
+    private static func makeSession() -> URLSession {
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.urlCache = nil
+        configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
+        return URLSession(configuration: configuration)
     }
 
     func send<Response: Decodable & Sendable>(_ endpoint: any Endpoint, decodingTo type: Response.Type) async throws -> Response {

@@ -1,3 +1,10 @@
+//
+//  PrayerTimesDTO.swift
+//  Islamic Companion
+//
+//  Created by Minaya on 14/11/2026.
+//
+
 import Foundation
 
 // Matches AlAdhan's /v1/timings/{date} response shape. Only the fields the

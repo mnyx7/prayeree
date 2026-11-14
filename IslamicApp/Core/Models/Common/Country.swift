@@ -1,3 +1,10 @@
+//
+//  Country.swift
+//  Islamic Companion
+//
+//  Created by Minaya on 14/11/2026.
+//
+
 import Foundation
 
 struct Country: Identifiable, Codable, Equatable, Hashable, Sendable {
@@ -14,8 +21,8 @@ extension Country {
     /// The full country list, derived from Foundation rather than a bundled
     /// dataset — always accurate, and localizes automatically with the app.
     static var all: [Country] {
-        Locale.isoRegionCodes
-            .map { Country(code: $0) }
+        Locale.Region.isoRegions
+            .map { Country(code: $0.identifier) }
             .sorted { $0.name < $1.name }
     }
 }

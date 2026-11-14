@@ -1,3 +1,10 @@
+//
+//  CompassHeading.swift
+//  Islamic Companion
+//
+//  Created by Minaya on 14/11/2026.
+//
+
 /// Plain, Sendable mirror of `CLHeading` — kept independent of CoreLocation
 /// types so Store `State` never has to carry a non-Sendable SDK class.
 struct CompassHeading: Equatable, Sendable {

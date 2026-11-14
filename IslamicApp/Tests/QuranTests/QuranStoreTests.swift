@@ -1,3 +1,10 @@
+//
+//  QuranStoreTests.swift
+//  Islamic Companion
+//
+//  Created by Minaya on 14/11/2026.
+//
+
 import XCTest
 @testable import IslamicApp
 
@@ -96,5 +103,99 @@ final class QuranStoreTests: XCTestCase {
         let readerStore = store.makeReaderStore(for: surah)
 
         XCTAssertEqual(readerStore.state.surah, surah)
+    }
+
+    func testContinueReadingAvailableAfterRelaunchWithoutLoadingSurahs() {
+        let env = TestEnvironmentFactory.make()
+        let home = makeStore(testEnv: env)
+        let surah = Surah(id: 2, arabicName: "البقرة", transliteratedName: "Al-Baqarah", englishTranslatedName: "The Cow", versesCount: 286, revelationPlace: .madinah)
+        home.makeReaderStore(for: surah).send(.readingPositionChanged(120))
+        home.send(.readingProgressChanged)
+        XCTAssertEqual(home.state.lastReadingPosition?.ayahNumberInSurah, 120)
+
+        let relaunchedHome = makeStore(testEnv: env)
+        XCTAssertTrue(relaunchedHome.state.surahs.isEmpty)
+        XCTAssertEqual(relaunchedHome.state.lastReadingPosition?.surah, surah)
+        XCTAssertEqual(relaunchedHome.makeReaderStore(for: surah).initialAyahNumber, 120)
+        XCTAssertTrue(env.apiClient.requestedEndpoints.isEmpty)
+    }
+
+    func testInvalidSavedReadingPositionDoesNotShowContinueReading() {
+        let env = TestEnvironmentFactory.make()
+        let surah = Surah(id: 1, arabicName: "الفاتحة", transliteratedName: "Al-Fatihah", englishTranslatedName: "The Opener", versesCount: 7, revelationPlace: .makkah)
+        env.preferencesStore.setValue(QuranReadingPosition(surah: surah, ayahNumberInSurah: 999), for: QuranReadingPosition.lastReadKey)
+        XCTAssertNil(makeStore(testEnv: env).state.lastReadingPosition)
+    }
+
+    func testChoosingAnAyahOnTheQuranPageAlsoSavesProgress() {
+        let env = TestEnvironmentFactory.make()
+        let store = makeStore(testEnv: env)
+        let surah = Surah(id: 1, arabicName: "الفاتحة", transliteratedName: "Al-Fatihah", englishTranslatedName: "The Opener", versesCount: 7, revelationPlace: .makkah)
+        store.send(.surahSelected(surah))
+        store.send(.ayahSelected(Ayah(surahNumber: 1, ayahNumberInSurah: 4, arabicText: "", translation: nil, translationId: nil)))
+        XCTAssertEqual(makeStore(testEnv: env).state.lastReadingPosition?.ayahNumberInSurah, 4)
+        XCTAssertEqual(store.makeReaderStore(for: surah).initialAyahNumber, 4)
+    }
+
+    func testFavoriteSurahsPersistAndCanBeRemoved() {
+        let env = TestEnvironmentFactory.make()
+        let home = makeStore(testEnv: env)
+        let surah = Surah(id: 1, arabicName: "الفاتحة", transliteratedName: "Al-Fatihah", englishTranslatedName: "The Opener", versesCount: 7, revelationPlace: .makkah)
+        home.favorites.toggleSurah(surah)
+        let reopened = makeStore(testEnv: env)
+        XCTAssertEqual(reopened.favorites.surahs, [surah])
+        reopened.favorites.toggleSurah(surah)
+        XCTAssertTrue(makeStore(testEnv: env).favorites.surahs.isEmpty)
+    }
+
+    func testReaderSharesFavoritesWithHomeAndAyahsOpenAtTheirSavedReference() {
+        let env = TestEnvironmentFactory.make()
+        let home = makeStore(testEnv: env)
+        let surah = Surah(id: 1, arabicName: "الفاتحة", transliteratedName: "Al-Fatihah", englishTranslatedName: "The Opener", versesCount: 7, revelationPlace: .makkah)
+        let reader = home.makeReaderStore(for: surah)
+        let ayah = Ayah(surahNumber: 1, ayahNumberInSurah: 4, arabicText: "", translation: nil, translationId: 20)
+        reader.send(.surahFavoriteToggled)
+        reader.send(.bookmarkTapped(ayah))
+        XCTAssertTrue(home.favorites.isFavorite(surah))
+        XCTAssertTrue(home.favorites.isFavorite(ayah))
+        let reopened = makeStore(testEnv: env)
+        let saved = reopened.favorites.ayahs.first!
+        XCTAssertEqual(saved.ayahNumberInSurah, 4)
+        XCTAssertEqual(reopened.makeReaderStore(for: saved.surah, startingAyahNumber: saved.ayahNumberInSurah).initialAyahNumber, 4)
+        home.favorites.removeAyah(saved)
+        XCTAssertFalse(reader.favorites.isFavorite(ayah))
+        XCTAssertTrue(home.favorites.isFavorite(surah))
+    }
+
+    func testAyahFavoriteIsIndependentOfTranslationAndReadingProgress() {
+        let env = TestEnvironmentFactory.make()
+        let home = makeStore(testEnv: env)
+        let surah = Surah(id: 1, arabicName: "الفاتحة", transliteratedName: "Al-Fatihah", englishTranslatedName: "The Opener", versesCount: 7, revelationPlace: .makkah)
+        let reader = home.makeReaderStore(for: surah)
+        reader.send(.readingPositionChanged(5))
+        reader.send(.bookmarkTapped(Ayah(surahNumber: 1, ayahNumberInSurah: 2, arabicText: "", translation: nil, translationId: 20)))
+        let translated = Ayah(surahNumber: 1, ayahNumberInSurah: 2, arabicText: "", translation: nil, translationId: 85)
+        XCTAssertTrue(home.favorites.isFavorite(translated))
+        reader.send(.bookmarkTapped(translated))
+        XCTAssertTrue(home.favorites.ayahs.isEmpty)
+        XCTAssertEqual(home.makeReaderStore(for: surah).initialAyahNumber, 5)
+    }
+
+    func testFavoriteValidationRejectsInvalidOrMismatchedAyahs() {
+        let env = TestEnvironmentFactory.make()
+        let home = makeStore(testEnv: env)
+        let surah = Surah(id: 1, arabicName: "الفاتحة", transliteratedName: "Al-Fatihah", englishTranslatedName: "The Opener", versesCount: 7, revelationPlace: .makkah)
+        let reader = home.makeReaderStore(for: surah)
+        reader.send(.bookmarkTapped(Ayah(surahNumber: 1, ayahNumberInSurah: 8, arabicText: "", translation: nil, translationId: nil)))
+        reader.send(.bookmarkTapped(Ayah(surahNumber: 2, ayahNumberInSurah: 1, arabicText: "", translation: nil, translationId: nil)))
+        XCTAssertTrue(home.favorites.ayahs.isEmpty)
+    }
+
+    func testFavoritesMenuOpensWithoutNetworkData() {
+        let env = TestEnvironmentFactory.make()
+        let home = makeStore(testEnv: env)
+        home.send(.favoritesTapped)
+        XCTAssertEqual(home.state.activeSheet, .favorites)
+        XCTAssertTrue(env.apiClient.requestedEndpoints.isEmpty)
     }
 }

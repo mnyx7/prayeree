@@ -1,3 +1,10 @@
+//
+//  QiblaCalculator.swift
+//  Islamic Companion
+//
+//  Created by Minaya on 14/11/2026.
+//
+
 import Foundation
 
 /// Local-only great-circle initial-bearing calculation — no network call

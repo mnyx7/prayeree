@@ -1,3 +1,10 @@
+//
+//  QuranDTO.swift
+//  Islamic Companion
+//
+//  Created by Minaya on 14/11/2026.
+//
+
 import Foundation
 
 // Matches Quran.com API v4's response shapes. Only fields the domain layer

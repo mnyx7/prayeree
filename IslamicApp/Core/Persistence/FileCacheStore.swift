@@ -1,3 +1,10 @@
+//
+//  FileCacheStore.swift
+//  Islamic Companion
+//
+//  Created by Minaya on 14/11/2026.
+//
+
 import Foundation
 
 /// An actor rather than a lock-guarded class — cache reads/writes are

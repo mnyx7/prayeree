@@ -1642,6 +1642,23 @@
         }
       }
     },
+    "quran.add_favorite" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إضافة إلى المفضلة"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add to favorites"
+          }
+        }
+      }
+    },
     "quran.all_surahs" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1744,6 +1761,23 @@
         }
       }
     },
+    "quran.continue_reading" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "متابعة القراءة"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue reading"
+          }
+        }
+      }
+    },
     "quran.daily_notification_body" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1795,6 +1829,40 @@
         }
       }
     },
+    "quran.favorite_ayahs" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الآيات المفضلة"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorite Ayahs"
+          }
+        }
+      }
+    },
+    "quran.favorite_surahs" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "السور المفضلة"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorite Surahs"
+          }
+        }
+      }
+    },
     "quran.font_size" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1808,6 +1876,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Font Size"
+          }
+        }
+      }
+    },
+    "quran.no_favorites" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اضغط على النجمة بجانب سورة أو آية لحفظها هنا."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap the star beside a surah or ayah to save it here."
           }
         }
       }
@@ -1842,6 +1927,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Open in Reader"
+          }
+        }
+      }
+    },
+    "quran.progress_saved" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يُحفظ موضع القراءة تلقائيًا"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reading progress saved automatically"
           }
         }
       }
@@ -1893,6 +1995,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Quran %1$lld:%2$lld"
+          }
+        }
+      }
+    },
+    "quran.remove_favorite" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إزالة من المفضلة"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove from favorites"
           }
         }
       }

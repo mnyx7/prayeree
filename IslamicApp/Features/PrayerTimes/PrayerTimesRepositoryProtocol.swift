@@ -1,3 +1,10 @@
+//
+//  PrayerTimesRepositoryProtocol.swift
+//  Islamic Companion
+//
+//  Created by Minaya on 14/11/2026.
+//
+
 import Foundation
 
 /// `prayerTimes` is nil only when there is no usable cache AND the network

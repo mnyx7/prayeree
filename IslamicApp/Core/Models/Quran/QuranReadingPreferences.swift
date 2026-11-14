@@ -1,3 +1,10 @@
+//
+//  QuranReadingPreferences.swift
+//  Islamic Companion
+//
+//  Created by Minaya on 14/11/2026.
+//
+
 struct QuranReadingPreferences: Codable, Equatable, Sendable {
     var readingMode: QuranReadingMode
     var fontScale: Double

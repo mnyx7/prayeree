@@ -1,3 +1,10 @@
+//
+//  SurahListView.swift
+//  Islamic Companion
+//
+//  Created by Minaya on 14/11/2026.
+//
+
 import SwiftUI
 
 // Reused by Components/SurahPickerView.swift (which wraps this in the sheet
@@ -8,9 +15,16 @@ struct SurahListView: View {
     let recentSurahs: [Surah]
     let searchQuery: String
     let onSelect: (Surah) -> Void
+    let favoriteSurahs: [Surah]
+    let onFavoriteToggled: (Surah) -> Void
 
     var body: some View {
         List {
+            if searchQuery.isEmpty, !favoriteSurahs.isEmpty {
+                Section {
+                    ForEach(favoriteSurahs) { surah in row(for: surah) }
+                } header: { Text(LocalizedKey.Common.favorites) }
+            }
             if searchQuery.isEmpty, !recentSurahs.isEmpty {
                 Section {
                     ForEach(recentSurahs) { surah in
@@ -40,24 +54,33 @@ struct SurahListView: View {
     }
 
     private func row(for surah: Surah) -> some View {
-        Button {
-            onSelect(surah)
-        } label: {
-            HStack {
-                Text("\(surah.id).")
-                    .foregroundStyle(AppColor.textSecondary)
-                    .frame(width: 28, alignment: .trailing)
-                VStack(alignment: .leading) {
-                    Text(surah.transliteratedName)
-                    Text(surah.englishTranslatedName)
-                        .font(.caption)
+        HStack {
+            Button {
+                onSelect(surah)
+            } label: {
+                HStack {
+                    Text("\(surah.id).")
                         .foregroundStyle(AppColor.textSecondary)
+                        .frame(width: 28, alignment: .trailing)
+                    VStack(alignment: .leading) {
+                        Text(surah.transliteratedName)
+                        Text(surah.englishTranslatedName)
+                            .font(.caption).foregroundStyle(AppColor.textSecondary)
+                    }
+                    Spacer()
+                    Text(surah.arabicName).font(.body)
                 }
-                Spacer()
-                Text(surah.arabicName)
-                    .font(.body)
+                .contentShape(Rectangle())
             }
+            .buttonStyle(.plain)
+            let isFavorite = favoriteSurahs.contains { $0.id == surah.id }
+            Button { onFavoriteToggled(surah) } label: {
+                Image(systemName: isFavorite ? "star.fill" : "star")
+                    .foregroundStyle(AppColor.accent)
+                    .frame(minWidth: 44, minHeight: 44)
+            }
+            .buttonStyle(.borderless)
+            .accessibilityLabel(Text(isFavorite ? LocalizedKey.Quran.removeFavorite : LocalizedKey.Quran.addFavorite))
         }
-        .buttonStyle(.plain)
     }
 }

@@ -1,3 +1,10 @@
+//
+//  AyahCardView.swift
+//  Islamic Companion
+//
+//  Created by Minaya on 14/11/2026.
+//
+
 import SwiftUI
 import UIKit
 
@@ -7,6 +14,8 @@ struct AyahCardView: View {
     let fontScale: Double
     let onCopy: () -> Void
     let onShare: () -> Void
+    let isFavorite: Bool
+    let onFavorite: () -> Void
 
     @State private var copyCount = 0
     @State private var isCopied = false
@@ -34,6 +43,11 @@ struct AyahCardView: View {
                     .font(AppTypography.caption)
                     .foregroundStyle(AppColor.textSecondary)
                 Spacer()
+                Button(action: onFavorite) {
+                    Image(systemName: isFavorite ? "star.fill" : "star")
+                }
+                .accessibilityLabel(Text(isFavorite ? LocalizedKey.Quran.removeFavorite : LocalizedKey.Quran.addFavorite))
+                .sensoryFeedback(.selection, trigger: isFavorite)
                 Button {
                     onCopy()
                     isCopied = true

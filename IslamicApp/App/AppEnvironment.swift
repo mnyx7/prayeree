@@ -1,3 +1,10 @@
+//
+//  AppEnvironment.swift
+//  Islamic Companion
+//
+//  Created by Minaya on 14/11/2026.
+//
+
 /// The single place production dependencies are constructed. Stores and
 /// repositories receive everything through this container's protocol-typed
 /// properties — never by instantiating a concrete service themselves.

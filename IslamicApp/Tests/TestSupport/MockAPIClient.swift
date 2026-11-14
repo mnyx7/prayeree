@@ -1,3 +1,10 @@
+//
+//  MockAPIClient.swift
+//  Islamic Companion
+//
+//  Created by Minaya on 14/11/2026.
+//
+
 import Foundation
 @testable import IslamicApp
 /// `@unchecked Sendable`: mutable state here is only ever touched from the

@@ -1,3 +1,10 @@
+//
+//  QuranStore.swift
+//  Islamic Companion
+//
+//  Created by Minaya on 14/11/2026.
+//
+
 import Foundation
 import Observation
 import UIKit
@@ -20,9 +27,11 @@ final class QuranStore {
         var activeSheet: ActiveSheet?
         var errorMessage: String?
         var recentSurahs: [Surah]
+        var lastReadingPosition: QuranReadingPosition? = nil
     }
 
     enum ActiveSheet: Identifiable, Equatable, Sendable {
+        case favorites
         case surahPicker
         case ayahPicker
         case translationSelector
@@ -32,7 +41,10 @@ final class QuranStore {
     }
 
     enum Action: Sendable {
+        case favoritesTapped
+        case ayahFavoriteToggled(Ayah)
         case dailyAyahRefreshRequested
+        case readingProgressChanged
         case screenAppeared
         case surahPickerTapped
         case surahSelected(Surah)
@@ -56,6 +68,7 @@ final class QuranStore {
     }
 
     private(set) var state: State
+    let favorites: QuranFavoritesStore
     private let repository: any QuranRepositoryProtocol
     private let preferencesStore: any PreferencesStore
     let languageCode: String
@@ -72,6 +85,7 @@ final class QuranStore {
     init(repository: any QuranRepositoryProtocol, preferencesStore: any PreferencesStore, locale: Locale = .current) {
         self.repository = repository
         self.preferencesStore = preferencesStore
+        self.favorites = QuranFavoritesStore(preferencesStore: preferencesStore)
         self.languageCode = locale.language.languageCode?.identifier ?? "en"
         let savedPreferences = preferencesStore.value(for: Self.readingPreferencesKey, as: QuranReadingPreferences.self) ?? .default
         self.state = State(
@@ -90,14 +104,28 @@ final class QuranStore {
             errorMessage: nil,
             recentSurahs: preferencesStore.value(for: Self.recentSurahsKey, as: [Surah].self) ?? []
         )
+        refreshReadingProgress()
     }
 
     func send(_ action: Action) {
         switch action {
+        case .favoritesTapped:
+            state.activeSheet = .favorites
+
+        case .ayahFavoriteToggled(let ayah):
+            guard let surah = state.surahs.first(where: { $0.id == ayah.surahNumber })
+                ?? (state.selectedSurah?.id == ayah.surahNumber ? state.selectedSurah : nil) else { return }
+            favorites.toggleAyah(QuranFavoriteAyah(surah: surah, ayahNumberInSurah: ayah.ayahNumberInSurah))
+
+        case .readingProgressChanged:
+            refreshReadingProgress()
+
         case .dailyAyahRefreshRequested:
+            refreshReadingProgress()
             loadDailyAyah()
 
         case .screenAppeared:
+            refreshReadingProgress()
             if state.surahs.isEmpty { state.loadingState = .loading }
             loadSurahsIfNeeded()
             loadTranslationsIfNeeded()
@@ -120,6 +148,14 @@ final class QuranStore {
         case .ayahSelected(let ayah):
             state.activeSheet = nil
             state.selectedAyah = ayah
+            if let surah = state.selectedSurah, surah.id == ayah.surahNumber {
+                let position = QuranReadingPosition(surah: surah, ayahNumberInSurah: ayah.ayahNumberInSurah)
+                if position.isValid {
+                    preferencesStore.setValue(position, for: QuranReadingPosition.storageKey(for: surah.id))
+                    preferencesStore.setValue(position, for: QuranReadingPosition.lastReadKey)
+                    state.lastReadingPosition = position
+                }
+            }
 
         case .translationSelectorTapped:
             state.activeSheet = .translationSelector
@@ -266,17 +302,24 @@ final class QuranStore {
     /// fresh per surah), unlike the four tab-level Stores which live for the
     /// app's lifetime — composed here from already-injected dependencies,
     /// never raw concrete types.
-    func makeReaderStore(for surah: Surah) -> QuranReaderStore {
+    func makeReaderStore(for surah: Surah, startingAyahNumber: Int? = nil) -> QuranReaderStore {
         QuranReaderStore(
             surah: surah,
             repository: repository,
             preferencesStore: preferencesStore,
             initialTranslation: state.selectedTranslation,
-            languageCode: languageCode
+            languageCode: languageCode,
+            startingAyahNumber: startingAyahNumber,
+            favorites: favorites
         )
     }
 
     // MARK: - Helpers
+
+    private func refreshReadingProgress() {
+        let position = preferencesStore.value(for: QuranReadingPosition.lastReadKey, as: QuranReadingPosition.self)
+        state.lastReadingPosition = position.flatMap { $0.isValid ? $0 : nil }
+    }
 
     private func addToRecents(_ surah: Surah) {
         var recents = state.recentSurahs.filter { $0.id != surah.id }
@@ -310,5 +353,53 @@ final class QuranStore {
         case .transportError, .cancelled:
             return String(localized: LocalizedKey.Common.networkLoadError())
         }
+    }
+}
+
+/// Shared by the Quran page and its readers so stars update immediately everywhere.
+@Observable
+@MainActor
+final class QuranFavoritesStore {
+    private(set) var surahs: [Surah]
+    private(set) var ayahs: [QuranFavoriteAyah]
+    private let preferencesStore: any PreferencesStore
+    private static let surahsKey = "quran.favoriteSurahs.v1"
+    private static let ayahsKey = "quran.favoriteAyahs.v1"
+
+    init(preferencesStore: any PreferencesStore) {
+        self.preferencesStore = preferencesStore
+        self.surahs = preferencesStore.value(for: Self.surahsKey, as: [Surah].self) ?? []
+        self.ayahs = preferencesStore.value(for: Self.ayahsKey, as: [QuranFavoriteAyah].self)?.filter(\.isValid) ?? []
+    }
+
+    func isFavorite(_ surah: Surah) -> Bool { surahs.contains { $0.id == surah.id } }
+    func isFavorite(_ ayah: Ayah) -> Bool { ayahs.contains { $0.id == ayah.id } }
+
+    func toggleSurah(_ surah: Surah) {
+        guard (1...114).contains(surah.id), surah.versesCount > 0 else { return }
+        if isFavorite(surah) { removeSurah(surah) }
+        else {
+            surahs.insert(surah, at: 0)
+            preferencesStore.setValue(surahs, for: Self.surahsKey)
+        }
+    }
+
+    func toggleAyah(_ ayah: QuranFavoriteAyah) {
+        guard ayah.isValid else { return }
+        if ayahs.contains(where: { $0.id == ayah.id }) { removeAyah(ayah) }
+        else {
+            ayahs.insert(ayah, at: 0)
+            preferencesStore.setValue(ayahs, for: Self.ayahsKey)
+        }
+    }
+
+    func removeSurah(_ surah: Surah) {
+        surahs.removeAll { $0.id == surah.id }
+        preferencesStore.setValue(surahs, for: Self.surahsKey)
+    }
+
+    func removeAyah(_ ayah: QuranFavoriteAyah) {
+        ayahs.removeAll { $0.id == ayah.id }
+        preferencesStore.setValue(ayahs, for: Self.ayahsKey)
     }
 }

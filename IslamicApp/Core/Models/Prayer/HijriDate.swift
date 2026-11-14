@@ -1,3 +1,10 @@
+//
+//  HijriDate.swift
+//  Islamic Companion
+//
+//  Created by Minaya on 14/11/2026.
+//
+
 struct HijriDate: Codable, Equatable, Sendable {
     let day: Int
     let month: HijriMonth

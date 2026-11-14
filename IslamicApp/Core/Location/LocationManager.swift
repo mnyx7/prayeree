@@ -1,3 +1,10 @@
+//
+//  LocationManager.swift
+//  Islamic Companion
+//
+//  Created by Minaya on 14/11/2026.
+//
+
 import CoreLocation
 
 @MainActor
@@ -5,8 +12,9 @@ final class LocationManager: NSObject, LocationManaging {
     private let manager = CLLocationManager()
     private let geocoder = CLGeocoder()
 
-    private var authorizationContinuation: CheckedContinuation<Void, Never>?
-    private var locationContinuation: CheckedContinuation<Coordinates, Error>?
+    private var authorizationContinuations: [CheckedContinuation<Void, Never>] = []
+    private var locationContinuations: [UUID: CheckedContinuation<Coordinates, Error>] = [:]
+    private var locationTimeout: Task<Void, Never>?
 
     var authorizationStatus: CLAuthorizationStatus {
         manager.authorizationStatus
@@ -20,25 +28,55 @@ final class LocationManager: NSObject, LocationManaging {
     func requestWhenInUseAuthorization() async {
         guard authorizationStatus == .notDetermined else { return }
         await withCheckedContinuation { continuation in
-            authorizationContinuation = continuation
-            manager.requestWhenInUseAuthorization()
+            let shouldRequest = authorizationContinuations.isEmpty
+            authorizationContinuations.append(continuation)
+            if shouldRequest { manager.requestWhenInUseAuthorization() }
         }
     }
 
     func requestCurrentLocation() async throws -> Coordinates {
+        await requestWhenInUseAuthorization()
         switch authorizationStatus {
-        case .denied:
-            throw LocationError.permissionDenied
-        case .restricted:
-            throw LocationError.permissionRestricted
-        default:
-            break
+        case .denied: throw LocationError.permissionDenied
+        case .restricted: throw LocationError.permissionRestricted
+        case .authorizedAlways, .authorizedWhenInUse: break
+        default: throw LocationError.locationUnavailable
         }
+        try Task.checkCancellation()
+        let id = UUID()
+        return try await withTaskCancellationHandler {
+            try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                    continuation.resume(throwing: CancellationError())
+                    return
+                }
+                let shouldRequest = locationContinuations.isEmpty
+                locationContinuations[id] = continuation
+                if shouldRequest {
+                    manager.requestLocation()
+                    locationTimeout = Task { [weak self] in
+                        do { try await Task.sleep(for: .seconds(15)) } catch { return }
+                        self?.finishLocation(.failure(LocationError.locationUnavailable))
+                    }
+                }
+            }
+        } onCancel: {
+            Task { @MainActor [weak self] in
+                self?.locationContinuations.removeValue(forKey: id)?.resume(throwing: CancellationError())
+                if self?.locationContinuations.isEmpty == true {
+                    self?.manager.stopUpdatingLocation()
+                    self?.locationTimeout?.cancel()
+                }
+            }
+        }
+    }
 
-        return try await withCheckedThrowingContinuation { continuation in
-            locationContinuation = continuation
-            manager.requestLocation()
-        }
+    private func finishLocation(_ result: Result<Coordinates, Error>) {
+        locationTimeout?.cancel()
+        locationTimeout = nil
+        let continuations = locationContinuations.values
+        locationContinuations.removeAll()
+        for continuation in continuations { continuation.resume(with: result) }
     }
 
     func reverseGeocodedCity(for coordinates: Coordinates) async throws -> City? {
@@ -84,8 +122,10 @@ final class LocationManager: NSObject, LocationManaging {
 extension LocationManager: CLLocationManagerDelegate {
     nonisolated func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         Task { @MainActor in
-            authorizationContinuation?.resume()
-            authorizationContinuation = nil
+            guard self.manager.authorizationStatus != .notDetermined else { return }
+            let continuations = self.authorizationContinuations
+            self.authorizationContinuations.removeAll()
+            for continuation in continuations { continuation.resume() }
         }
     }
 
@@ -93,15 +133,13 @@ extension LocationManager: CLLocationManagerDelegate {
         guard let location = locations.last else { return }
         let coordinates = Coordinates(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         Task { @MainActor in
-            locationContinuation?.resume(returning: coordinates)
-            locationContinuation = nil
+            self.finishLocation(.success(coordinates))
         }
     }
 
     nonisolated func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         Task { @MainActor in
-            locationContinuation?.resume(throwing: LocationError.locationUnavailable)
-            locationContinuation = nil
+            self.finishLocation(.failure(LocationError.locationUnavailable))
         }
     }
 }

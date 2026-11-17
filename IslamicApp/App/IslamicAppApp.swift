@@ -13,6 +13,7 @@ struct IslamicAppApp: App {
     @State private var environment: AppEnvironment
     @State private var appStore: AppStore
     @State private var showsSplash = true
+    @AppStorage(LocalizationManager.languagePreferenceKey) private var appLanguage = ""
 
     init() {
         let environment = AppEnvironment.live()
@@ -33,6 +34,11 @@ struct IslamicAppApp: App {
                     .zIndex(1)
                 }
             }
+                .environment(\.locale, LocalizationManager.locale)
+                .environment(\.layoutDirection, LocalizationManager.isRightToLeft ? .rightToLeft : .leftToRight)
+                .onChange(of: appLanguage) { _, _ in
+                    appStore.send(.notificationPreferencesChanged)
+                }
                 .onChange(of: scenePhase) { _, phase in
                     if phase == .active { appStore.send(.appLaunched) }
                     else { environment.widgetPublisher?.flushReadingReload() }

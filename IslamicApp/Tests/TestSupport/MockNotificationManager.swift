@@ -16,6 +16,13 @@ final class MockNotificationManager: NotificationManaging {
     var authorizationGranted = true
     var stubbedAuthorizationStatus: UNAuthorizationStatus = .notDetermined
 
+    struct ScheduledRequest {
+        let title: String
+        let body: String
+        let sound: UNNotificationSound?
+        let dateComponents: DateComponents
+    }
+    private(set) var scheduledRequests: [String: ScheduledRequest] = [:]
     private(set) var scheduledIdentifiers: [String] = []
     private(set) var cancelledIdentifiers: [String] = []
 
@@ -42,11 +49,13 @@ final class MockNotificationManager: NotificationManaging {
         // identifier that's already pending replaces it rather than duplicating.
         scheduledIdentifiers.removeAll { $0 == identifier }
         scheduledIdentifiers.append(identifier)
+        scheduledRequests[identifier] = ScheduledRequest(title: title, body: body, sound: sound, dateComponents: dateComponents)
     }
 
     func cancelNotifications(withIdentifiers identifiers: [String]) async {
         cancelledIdentifiers.append(contentsOf: identifiers)
         scheduledIdentifiers.removeAll { identifiers.contains($0) }
+        for identifier in identifiers { scheduledRequests.removeValue(forKey: identifier) }
     }
 
     func pendingNotificationIdentifiers() async -> [String] {

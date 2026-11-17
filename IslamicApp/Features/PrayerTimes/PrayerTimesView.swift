@@ -73,6 +73,9 @@ struct PrayerTimesView: View {
             VStack(spacing: AppSpacing.xxSmall) {
                 ForEach(prayerTimes.times) { time in
                     PrayerTimeRow(prayerTime: time, isNext: time.id == store.state.nextPrayer?.id, timeZone: prayerTimes.timeZone)
+                    if time.name == .fajr, let sunrise = prayerTimes.sunrise {
+                        SunriseTimeRow(date: sunrise, timeZone: prayerTimes.timeZone)
+                    }
                 }
             }
         } else if store.state.loadingState == .loading {

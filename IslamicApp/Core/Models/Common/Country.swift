@@ -15,7 +15,7 @@ struct Country: Identifiable, Codable, Equatable, Hashable, Sendable {
 
 extension Country {
     init(code: String) {
-        self.init(id: code, name: Locale.current.localizedString(forRegionCode: code) ?? code)
+        self.init(id: code, name: LocalizationManager.locale.localizedString(forRegionCode: code) ?? code)
     }
 
     /// The full country list, derived from Foundation rather than a bundled

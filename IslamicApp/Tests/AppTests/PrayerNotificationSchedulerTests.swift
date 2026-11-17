@@ -117,6 +117,86 @@ final class PrayerNotificationSchedulerTests: XCTestCase {
         XCTAssertEqual(mock.scheduledIdentifiers.filter { $0 == dhuhrIdentifier }.count, 1)
     }
 
+    func testLegacyNotificationPreferencesKeepSunriseOff() throws {
+        let preference = PrayerNotificationPreference.allEnabled.toggling(.isha)
+        var object = try XCTUnwrap(JSONSerialization.jsonObject(with: JSONEncoder().encode(preference)) as? [String: Any])
+        object.removeValue(forKey: "isSunriseEnabled")
+        let restored = try JSONDecoder().decode(PrayerNotificationPreference.self, from: JSONSerialization.data(withJSONObject: object))
+        XCTAssertFalse(restored.isSunriseEnabled)
+        XCTAssertTrue(restored.isEnabled(.fajr))
+        XCTAssertFalse(restored.isEnabled(.isha))
+        var enabled = restored
+        enabled.isSunriseEnabled = true
+        XCTAssertEqual(try JSONDecoder().decode(PrayerNotificationPreference.self, from: JSONEncoder().encode(enabled)), enabled)
+    }
+
+    @MainActor func testSunriseUsesSourceTimeZoneContentAndSound() async throws {
+        let mock = MockNotificationManager()
+        let scheduler = PrayerNotificationScheduler(notificationManager: mock)
+        var schedule = makePrayerTimes(date: Date().addingTimeInterval(86400), times: [])
+        schedule.sunrise = Date().addingTimeInterval(90000)
+        await scheduler.rescheduleSunrise(for: [schedule], isEnabled: true, soundName: "test.caf", content: { ("Sunrise", "The sun is rising.") })
+        let id = PrayerNotificationScheduler.sunriseIdentifier(for: schedule.date, timeZone: schedule.timeZone)
+        let request = try XCTUnwrap(mock.scheduledRequests[id])
+        XCTAssertEqual(request.title, "Sunrise")
+        XCTAssertEqual(request.body, "The sun is rising.")
+        XCTAssertNotNil(request.sound)
+        XCTAssertEqual(request.dateComponents.timeZone?.identifier, schedule.timeZoneIdentifier)
+        var calendar = Calendar(identifier: .gregorian); calendar.timeZone = schedule.timeZone
+        XCTAssertEqual(request.dateComponents.hour, calendar.component(.hour, from: schedule.sunrise!))
+        XCTAssertEqual(request.dateComponents.minute, calendar.component(.minute, from: schedule.sunrise!))
+        XCTAssertTrue(id.hasPrefix("sunrise."))
+        XCTAssertEqual(mock.scheduledIdentifiers.count, 1)
+    }
+
+    @MainActor func testSunriseDisabledMissingAndPastProduceNoAlerts() async {
+        let mock = MockNotificationManager()
+        let scheduler = PrayerNotificationScheduler(notificationManager: mock)
+        var schedule = makePrayerTimes(date: Date(), times: [])
+        schedule.sunrise = Date().addingTimeInterval(3600)
+        await scheduler.rescheduleSunrise(for: [schedule], isEnabled: false, soundName: nil, content: { ("Sunrise", "") })
+        XCTAssertTrue(mock.scheduledIdentifiers.isEmpty)
+        schedule.sunrise = nil
+        await scheduler.rescheduleSunrise(for: [schedule], isEnabled: true, soundName: nil, content: { ("Sunrise", "") })
+        schedule.sunrise = Date().addingTimeInterval(-3600)
+        await scheduler.rescheduleSunrise(for: [schedule], isEnabled: true, soundName: nil, content: { ("Sunrise", "") })
+        XCTAssertTrue(mock.scheduledIdentifiers.isEmpty)
+    }
+
+    @MainActor func testSunriseToggleOffCancelsOnlySunriseAndRescheduleDoesNotDuplicate() async throws {
+        let mock = MockNotificationManager()
+        let scheduler = PrayerNotificationScheduler(notificationManager: mock)
+        try await mock.schedule(identifier: "prayer.fajr.existing", title: "", body: "", sound: nil, dateComponents: DateComponents(), repeats: false)
+        try await mock.schedule(identifier: "quran.dailyAyah", title: "", body: "", sound: nil, dateComponents: DateComponents(), repeats: true)
+        var schedule = makePrayerTimes(date: Date(), times: [])
+        schedule.sunrise = Date().addingTimeInterval(3600)
+        for _ in 0..<2 {
+            await scheduler.rescheduleSunrise(for: [schedule], isEnabled: true, soundName: nil, content: { ("Sunrise", "") })
+        }
+        XCTAssertEqual(mock.scheduledIdentifiers.filter { $0.hasPrefix("sunrise.") }.count, 1)
+        await scheduler.rescheduleSunrise(for: [schedule], isEnabled: false, soundName: nil, content: { ("Sunrise", "") })
+        XCTAssertFalse(mock.scheduledIdentifiers.contains { $0.hasPrefix("sunrise.") })
+        XCTAssertTrue(mock.scheduledIdentifiers.contains("prayer.fajr.existing"))
+        XCTAssertTrue(mock.scheduledIdentifiers.contains("quran.dailyAyah"))
+    }
+
+    @MainActor func testSevenDaysWithSunriseKeepFivePrayersPerDayAndCancelTogether() async {
+        let mock = MockNotificationManager()
+        let scheduler = PrayerNotificationScheduler(notificationManager: mock)
+        let days = (1...7).map { offset -> PrayerTimes in
+            let date = Date().addingTimeInterval(Double(offset) * 86400)
+            var schedule = makePrayerTimes(date: date, times: PrayerName.allCases.map { PrayerTime(name: $0, date: date.addingTimeInterval(3600)) })
+            schedule.sunrise = date.addingTimeInterval(7200)
+            return schedule
+        }
+        await scheduler.reschedule(for: days, preference: .allEnabled, soundName: nil, content: { ($0.rawValue, "") })
+        await scheduler.rescheduleSunrise(for: days, isEnabled: true, soundName: nil, content: { ("Sunrise", "") })
+        XCTAssertEqual(mock.scheduledIdentifiers.filter { $0.hasPrefix("prayer.") }.count, 35)
+        XCTAssertEqual(mock.scheduledIdentifiers.filter { $0.hasPrefix("sunrise.") }.count, 7)
+        await scheduler.cancelAll()
+        XCTAssertTrue(mock.scheduledIdentifiers.isEmpty)
+    }
+
     private func makePrayerTimes(date: Date, times: [PrayerTime]) -> PrayerTimes {
         PrayerTimes(
             date: date,

@@ -34,7 +34,8 @@ final class AppWidgetPublisher {
     func publishPrayers(state: AppState, now: Date = Date()) {
         guard let coordinates = state.resolvedCoordinates else { return }
         let zone: String
-        if case .manual(_, let city) = state.locationSourceMode { zone = city.timeZoneIdentifier }
+        if state.calculationMethod == .qmiMinber { zone = "Asia/Baku" }
+        else if case .manual(_, let city) = state.locationSourceMode { zone = city.timeZoneIdentifier }
         else { zone = TimeZone.current.identifier }
         var calendar = Calendar(identifier: .gregorian)
         calendar.timeZone = TimeZone(identifier: zone) ?? .current
@@ -43,15 +44,24 @@ final class AppWidgetPublisher {
                   let times = LocalPrayerTimesCalculator.calculate(dateComponents: calendar.dateComponents([.year, .month, .day], from: date), coordinates: coordinates, calculationMethod: state.calculationMethod, madhab: state.madhab, adjustment: state.prayerAdjustment, timeZoneIdentifier: zone) else { return nil }
             return WidgetPrayerDay(date: times.date, prayers: times.times.map { WidgetPrayer(name: $0.name.rawValue, date: $0.date) })
         }
-        let snapshot = WidgetPrayerSnapshot(cityName: state.selectedCity?.name ?? String(localized: "widget.current_location", defaultValue: "Current location"), timeZoneIdentifier: zone, days: days)
+        let snapshot = WidgetPrayerSnapshot(cityName: state.selectedCity?.name ?? String(localized: "widget.current_location", defaultValue: "Current location", locale: LocalizationManager.locale), timeZoneIdentifier: zone, days: days)
         if store.write(snapshot, named: "prayers") { reload(CompanionWidgets.prayerKind) }
     }
 
-    func publishPrayerTimes(_ times: PrayerTimes) {
+    func publishPrayerTimes(_ times: PrayerTimes, now: Date = Date()) {
         guard var snapshot = store.read("prayers", as: WidgetPrayerSnapshot.self), snapshot.timeZoneIdentifier == times.timeZoneIdentifier else { return }
         let key = CompanionWidgets.dayKey(times.date, timeZone: times.timeZone)
-        guard let index = snapshot.days.firstIndex(where: { CompanionWidgets.dayKey($0.date, timeZone: times.timeZone) == key }) else { return }
-        snapshot.days[index] = WidgetPrayerDay(date: times.date, prayers: times.times.map { WidgetPrayer(name: $0.name.rawValue, date: $0.date) })
+        let day = WidgetPrayerDay(date: times.date, prayers: times.times.map { WidgetPrayer(name: $0.name.rawValue, date: $0.date) })
+        if let index = snapshot.days.firstIndex(where: { CompanionWidgets.dayKey($0.date, timeZone: times.timeZone) == key }) {
+            snapshot.days[index] = day
+        } else if times.calculationMethod == .qmiMinber {
+            var calendar = Calendar(identifier: .gregorian)
+            calendar.timeZone = times.timeZone
+            let start = calendar.startOfDay(for: now)
+            guard let end = calendar.date(byAdding: .day, value: 7, to: start), times.date >= start, times.date < end else { return }
+            snapshot.days.append(day)
+            snapshot.days.sort { $0.date < $1.date }
+        } else { return }
         if store.write(snapshot, named: "prayers") { reload(CompanionWidgets.prayerKind) }
     }
 

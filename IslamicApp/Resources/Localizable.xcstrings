@@ -1,25 +1,340 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "settings.sunrise_about" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sunrise appears between Fajr and Dhuhr and has an optional reminder. The next-prayer countdown follows the five daily prayers."
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يظهر الشروق بين الفجر والظهر وله تذكير اختياري. يتبع العد التنازلي للصلاة التالية الصلوات الخمس اليومية."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Восход отображается между фаджром и зухром; для него можно включить напоминание. Обратный отсчёт относится к пяти ежедневным намазам."
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Günəşin doğması Sübh və Zöhr arasında göstərilir və ayrıca bildiriş seçimi var. Növbəti namaza geri sayım beş gündəlik namaza əsaslanır."
+          }
+        }
+      }
+    },
+    "settings.minber_source_note" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minber.az is a third-party source for QMİ-based city timetables."
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minber.az مصدر خارجي لجداول المدن المستندة إلى بيانات إدارة مسلمي القوقاز."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minber.az — сторонний источник расписаний по городам на основе данных Управления мусульман Кавказа (QMİ)."
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minber.az QMİ məlumatlarına əsaslanan şəhər təqvimlərini təqdim edən üçüncü tərəf mənbəyidir."
+          }
+        }
+      }
+    },
+    "settings.credit_adhan" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "On-device calculations • Adhan Swift"
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الحسابات على الجهاز • Adhan Swift"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расчёт на устройстве • Adhan Swift"
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cihazda hesablama • Adhan Swift"
+          }
+        }
+      }
+    },
+    "settings.credit_minber" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "QMİ timetable and sunrise • Minber.az"
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جدول إدارة مسلمي القوقاز والشروق • Minber.az"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расписание QMİ и восход • Minber.az"
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "QMİ təqvimi və günəşin doğması • Minber.az"
+          }
+        }
+      }
+    },
+    "settings.credit_aladhan" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prayer times and sunrise • AlAdhan"
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أوقات الصلاة والشروق • AlAdhan"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Время намазов и восхода • AlAdhan"
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Namaz vaxtları və günəşin doğması • AlAdhan"
+          }
+        }
+      }
+    },
+    "settings.data_sources" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data sources"
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مصادر البيانات"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Источники данных"
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Məlumat mənbələri"
+          }
+        }
+      }
+    },
+    "settings.sunrise_reminder_info" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sunrise has its own optional reminder. Open the app regularly to refresh the seven-day reminder schedule."
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "للشروق تذكير اختياري مستقل. افتح التطبيق بانتظام لتحديث جدول التذكيرات للأيام السبعة المقبلة."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Для восхода можно включить отдельное напоминание. Регулярно открывайте приложение, чтобы обновлять расписание на семь дней."
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Günəşin doğması üçün ayrıca bildiriş seçə bilərsiniz. Yeddi günlük bildiriş cədvəlini yeniləmək üçün tətbiqi müntəzəm açın."
+          }
+        }
+      }
+    },
+    "prayer_times.sunrise_notification_body" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The sun is rising in your selected location."
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تشرق الشمس في الموقع الذي اخترته."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В выбранном вами месте восходит солнце."
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seçdiyiniz məkanda günəş doğur."
+          }
+        }
+      }
+    },
+    "prayer_times.sunrise" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sunrise"
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الشروق"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Восход"
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Günəşin doğması"
+          }
+        }
+      }
+    },
     "--°" : {
       "comment" : "A placeholder for the Qibla bearing.",
-      "isCommentAutoGenerated" : true
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "--°"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "--°"
+          }
+        }
+      }
     },
     "%@" : {
       "comment" : "A label displaying the surah number.",
-      "isCommentAutoGenerated" : true
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
     },
     "%@." : {
       "comment" : "A number that appears before a surah's name. For example, \"1.\" for the first surah.",
-      "isCommentAutoGenerated" : true
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@."
+          }
+        }
+      }
     },
     "%@. %@" : {
       "comment" : "A row in a picker view that lets the user select a surah to search in. The first argument is the surah's transliterated name. The second argument is the surah's number.",
       "isCommentAutoGenerated" : true,
       "localizations" : {
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@. %2$@"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
+            "value" : "%1$@. %2$@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "%1$@. %2$@"
           }
         }
@@ -27,7 +342,21 @@
     },
     "%@°" : {
       "comment" : "A label showing the current Qibla bearing in degrees. The value is rounded to the nearest whole number.",
-      "isCommentAutoGenerated" : true
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@°"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@°"
+          }
+        }
+      }
     },
     "calc_method.dubai" : {
       "extractionState" : "manual",
@@ -38,10 +367,22 @@
             "value" : "دبي"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dubay"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dubai"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дубай"
           }
         }
       }
@@ -55,10 +396,22 @@
             "value" : "الهيئة المصرية العامة للمساحة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Misir Baş İdarəsi"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Egyptian General Authority"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Главное управление Египта"
           }
         }
       }
@@ -72,10 +425,22 @@
             "value" : "الجمعية الإسلامية لأمريكا الشمالية"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Şimali Amerika İslam Cəmiyyəti"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Islamic Society of North America"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Исламское общество Северной Америки"
           }
         }
       }
@@ -89,10 +454,22 @@
             "value" : "جامعة العلوم الإسلامية، كراتشي"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kəraçi İslam Elmləri Universiteti"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "University of Islamic Sciences, Karachi"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Университет исламских наук, Карачи"
           }
         }
       }
@@ -106,10 +483,22 @@
             "value" : "الكويت"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Küveyt"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kuwait"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кувейт"
           }
         }
       }
@@ -123,10 +512,22 @@
             "value" : "لجنة رؤية الهلال"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ay Müşahidə Komitəsi"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Moonsighting Committee"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Комитет наблюдения за луной"
           }
         }
       }
@@ -140,10 +541,22 @@
             "value" : "رابطة العالم الإسلامي"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dünya İslam Liqası"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Muslim World League"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Всемирная исламская лига"
           }
         }
       }
@@ -157,10 +570,51 @@
             "value" : "قطر"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Qətər"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Qatar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Катар"
+          }
+        }
+      }
+    },
+    "calc_method.qmi_minber" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إدارة مسلمي القوقاز (Minber)"
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Qafqaz Müsəlmanları İdarəsi (Minber)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Qafqaz Müsəlmanları İdarəsi (Minber)"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Управление мусульман Кавказа (Minber)"
           }
         }
       }
@@ -174,10 +628,22 @@
             "value" : "سنغافورة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sinqapur"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Singapore"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сингапур"
           }
         }
       }
@@ -191,10 +657,22 @@
             "value" : "طهران"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tehran"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tehran"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тегеран"
           }
         }
       }
@@ -208,10 +686,22 @@
             "value" : "تركيا (ديانت)"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Türkiyə (Diyanet)"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Turkey (Diyanet)"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Турция (Диянет)"
           }
         }
       }
@@ -225,10 +715,22 @@
             "value" : "جامعة أم القرى، مكة المكرمة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ümmül-Qura Universiteti, Məkkə"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Umm Al-Qura University, Makkah"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Университет Умм аль-Кура, Мекка"
           }
         }
       }
@@ -242,10 +744,22 @@
             "value" : "إضافة مدينة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Şəhər əlavə et"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Add city"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить город"
           }
         }
       }
@@ -259,10 +773,22 @@
             "value" : "إلغاء"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ləğv et"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cancel"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отмена"
           }
         }
       }
@@ -276,10 +802,22 @@
             "value" : "تم النسخ"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopyalandı"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Copied"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скопировано"
           }
         }
       }
@@ -293,10 +831,22 @@
             "value" : "نسخ"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopyala"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Copy"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Копировать"
           }
         }
       }
@@ -310,10 +860,22 @@
             "value" : "تم"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hazırdır"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Done"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Готово"
           }
         }
       }
@@ -327,10 +889,22 @@
             "value" : "حدث خطأ ما. يرجى المحاولة مرة أخرى."
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xəta baş verdi. Yenidən cəhd edin."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Something went wrong. Please try again."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Что-то пошло не так. Попробуйте ещё раз."
           }
         }
       }
@@ -344,10 +918,22 @@
             "value" : "تحقق من اتصالك بالإنترنت وحاول مرة أخرى."
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İnternet bağlantınızı yoxlayın və yenidən cəhd edin."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Check your internet connection and try again."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверьте подключение к интернету и попробуйте ещё раз."
           }
         }
       }
@@ -361,10 +947,22 @@
             "value" : "الخدمة غير متوفرة حاليًا."
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xidmət hazırda əlçatan deyil."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "The service is unavailable right now."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сервис сейчас недоступен."
           }
         }
       }
@@ -378,10 +976,22 @@
             "value" : "المفضلة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seçilmişlər"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Favorites"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избранное"
           }
         }
       }
@@ -395,10 +1005,22 @@
             "value" : "آخر تحديث في %@"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Son yenilənmə: %@"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Last updated at %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Последнее обновление: %@"
           }
         }
       }
@@ -412,10 +1034,22 @@
             "value" : "لم يتم العثور على مدن"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Şəhər tapılmadı"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "No cities found"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Города не найдены"
           }
         }
       }
@@ -429,10 +1063,22 @@
             "value" : "الأخيرة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Son istifadə olunanlar"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Recent"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Недавние"
           }
         }
       }
@@ -446,10 +1092,22 @@
             "value" : "إعادة المحاولة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yenidən cəhd et"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Retry"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Повторить"
           }
         }
       }
@@ -463,10 +1121,22 @@
             "value" : "بحث"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Axtarış"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Search"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поиск"
           }
         }
       }
@@ -480,10 +1150,22 @@
             "value" : "اختر المدينة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Şəhər seç"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Select City"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбрать город"
           }
         }
       }
@@ -497,10 +1179,22 @@
             "value" : "عرض بيانات مخزنة مؤقتًا"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yadda saxlanmış məlumatlar göstərilir"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Showing cached data"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показаны сохранённые данные"
           }
         }
       }
@@ -514,10 +1208,22 @@
             "value" : "حاول مرة أخرى"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yenidən cəhd et"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Try Again"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Попробовать ещё раз"
           }
         }
       }
@@ -531,25 +1237,133 @@
             "value" : "استخدام الموقع الحالي"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cari məkandan istifadə et"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Use Current Location"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Использовать текущую геопозицию"
           }
         }
       }
     },
     "Couldn’t load this surah. Check your connection and try again." : {
       "comment" : "A message displayed when a surah fails to load.",
-      "isCommentAutoGenerated" : true
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu surəni yükləmək mümkün olmadı. Bağlantınızı yoxlayın və yenidən cəhd edin."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось загрузить эту суру. Проверьте подключение и попробуйте ещё раз."
+          }
+        }
+      }
     },
     "Current surah" : {
       "comment" : "A placeholder for a picker that lets the user choose a surah to search in.",
-      "isCommentAutoGenerated" : true
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cari surə"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текущая сура"
+          }
+        }
+      }
+    },
+    "Earlier" : {
+      "comment" : "A label for a picker item that indicates a prayer is earlier.",
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daha tez"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Раньше"
+          }
+        }
+      }
+    },
+    "Enter 0–60 minutes. Use 0 to remove the adjustment." : {
+      "comment" : "A description of the validation error for prayer adjustment minutes.",
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0–60 dəqiqə daxil edin. Düzəlişi silmək üçün 0 daxil edin."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Введите от 0 до 60 минут. Введите 0, чтобы убрать корректировку."
+          }
+        }
+      }
+    },
+    "Enter a number from 0 to 60." : {
+      "comment" : "A warning message displayed when the user enters an invalid number of minutes for a prayer adjustment.",
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0 ilə 60 arasında ədəd daxil edin."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Введите число от 0 до 60."
+          }
+        }
+      }
     },
     "Find a surah by name or number, jump to 2:255, or search Arabic and translation text in the selected surah." : {
       "comment" : "A description of the search functionality in the Quran search view.",
-      "isCommentAutoGenerated" : true
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Surəni adı və ya nömrəsi ilə tapın, 2:255 ayəsinə keçin və ya seçilmiş surənin ərəb mətnində və tərcüməsində axtarın."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Найдите суру по названию или номеру, перейдите к 2:255 или выполните поиск по арабскому тексту и переводу выбранной суры."
+          }
+        }
+      }
     },
     "hijri_month.dhul_hijjah" : {
       "extractionState" : "manual",
@@ -560,10 +1374,22 @@
             "value" : "ذو الحجة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zilhiccə"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dhu al-Hijjah"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зуль-хиджа"
           }
         }
       }
@@ -577,10 +1403,22 @@
             "value" : "ذو القعدة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zilqədə"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dhu al-Qi'dah"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зуль-када"
           }
         }
       }
@@ -594,10 +1432,22 @@
             "value" : "جمادى الأولى"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cəmadiyələvvəl"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Jumada al-Awwal"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Джумада аль-уля"
           }
         }
       }
@@ -611,10 +1461,22 @@
             "value" : "جمادى الآخرة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cəmadiyəlaxır"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Jumada al-Thani"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Джумада ас-сания"
           }
         }
       }
@@ -628,10 +1490,22 @@
             "value" : "محرم"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Məhərrəm"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Muharram"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мухаррам"
           }
         }
       }
@@ -645,10 +1519,22 @@
             "value" : "ربيع الأول"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rəbiüləvvəl"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rabi' al-Awwal"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Раби аль-авваль"
           }
         }
       }
@@ -662,10 +1548,22 @@
             "value" : "ربيع الثاني"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rəbiülaxır"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rabi' al-Thani"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Раби ас-сани"
           }
         }
       }
@@ -679,10 +1577,22 @@
             "value" : "رجب"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rəcəb"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rajab"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Раджаб"
           }
         }
       }
@@ -696,10 +1606,22 @@
             "value" : "رمضان"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ramazan"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ramadan"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рамадан"
           }
         }
       }
@@ -713,10 +1635,22 @@
             "value" : "صفر"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Səfər"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Safar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сафар"
           }
         }
       }
@@ -730,10 +1664,22 @@
             "value" : "شعبان"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Şaban"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sha'ban"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шаабан"
           }
         }
       }
@@ -747,17 +1693,127 @@
             "value" : "شوال"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Şəvval"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Shawwal"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шавваль"
+          }
         }
       }
     },
     "Islamic Companion" : {
-      "comment" : "The name of the app.",
-      "isCommentAutoGenerated" : true
+      "comment" : "Brand name. Keep Islamic Companion unchanged in every language.",
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Islamic Companion"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Islamic Companion"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Islamic Companion"
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Islamic Companion"
+          }
+        }
+      }
+    },
+    "Later" : {
+      "comment" : "A label for a picker item that indicates a later prayer time.",
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daha gec"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Позже"
+          }
+        }
+      }
+    },
+    "Minutes" : {
+      "comment" : "A label displayed next to a text field for entering the number of minutes to adjust prayer times.",
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dəqiqə"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Минуты"
+          }
+        }
+      }
+    },
+    "One minute earlier" : {
+      "comment" : "A label for a button that decreases a prayer's manual adjustment by one minute.",
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bir dəqiqə daha tez"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "На минуту раньше"
+          }
+        }
+      }
+    },
+    "One minute later" : {
+      "comment" : "A label for a button that adds one minute to a prayer's manual adjustment.",
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bir dəqiqə daha gec"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "На минуту позже"
+          }
+        }
+      }
     },
     "prayer_name.asr" : {
       "extractionState" : "manual",
@@ -768,10 +1824,22 @@
             "value" : "العصر"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Əsr"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Asr"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Аср"
           }
         }
       }
@@ -785,10 +1853,22 @@
             "value" : "الظهر"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zöhr"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dhuhr"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зухр"
           }
         }
       }
@@ -802,10 +1882,22 @@
             "value" : "الفجر"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sübh"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fajr"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фаджр"
           }
         }
       }
@@ -819,10 +1911,22 @@
             "value" : "العشاء"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İşa"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Isha"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Иша"
           }
         }
       }
@@ -836,10 +1940,22 @@
             "value" : "المغرب"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Məğrib"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Maghrib"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Магриб"
           }
         }
       }
@@ -853,10 +1969,22 @@
             "value" : "اكتملت جميع صلوات اليوم"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu günün bütün namazları tamamlanıb"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "All prayers for today are complete"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Все намазы на сегодня завершены"
           }
         }
       }
@@ -870,10 +1998,22 @@
             "value" : "تصفح حسب الدولة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ölkələr üzrə bax"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Browse by Country"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обзор по странам"
           }
         }
       }
@@ -887,10 +2027,22 @@
             "value" : "تم الحساب على جهازك وفق إعدادات الصلاة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Namaz parametrlərinizə uyğun olaraq cihazınızda hesablanıb"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Calculated on your device using your prayer settings"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рассчитано на устройстве с учётом настроек намаза"
           }
         }
       }
@@ -904,10 +2056,22 @@
             "value" : "اختر المدينة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Şəhər seç"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Choose City"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбрать город"
           }
         }
       }
@@ -957,6 +2121,24 @@
             }
           }
         },
+        "az" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Növbəti namaz: %1$@, %2$lld dəqiqə sonra"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Növbəti namaz: %1$@, %2$lld dəqiqə sonra"
+                }
+              }
+            }
+          }
+        },
         "en" : {
           "variations" : {
             "plural" : {
@@ -974,6 +2156,36 @@
               }
             }
           }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Следующий намаз: %1$@ через %2$lld минуты"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Следующий намаз: %1$@ через %2$lld минут"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Следующий намаз: %1$@ через %2$lld минуту"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Следующий намаз: %1$@ через %2$lld минуты"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -986,10 +2198,22 @@
             "value" : "تعذر تحميل أوقات الصلاة. يرجى المحاولة مرة أخرى."
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Namaz vaxtlarını yükləmək mümkün olmadı. Yenidən cəhd edin."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "We couldn't load prayer times. Please try again."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось загрузить время намазов. Попробуйте ещё раз."
           }
         }
       }
@@ -1003,10 +2227,22 @@
             "value" : "تم رفض الوصول إلى الموقع. فعّله من الإعدادات أو اختر مدينة يدويًا."
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Məkana girişə icazə verilməyib. Parametrlərdə icazə verin və ya şəhəri əl ilə seçin."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Location access is denied. Enable it in Settings or choose a city manually."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доступ к геопозиции запрещён. Разрешите его в настройках или выберите город вручную."
           }
         }
       }
@@ -1020,10 +2256,22 @@
             "value" : "الوصول إلى الموقع مقيد على هذا الجهاز. اختر مدينة يدويًا."
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu cihazda məkana giriş məhdudlaşdırılıb. Şəhəri əl ilə seçin."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Location access is restricted on this device. Choose a city manually."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доступ к геопозиции на этом устройстве ограничен. Выберите город вручную."
           }
         }
       }
@@ -1037,10 +2285,22 @@
             "value" : "تعذر تحديد موقعك. حاول مرة أخرى أو اختر مدينة يدويًا."
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Məkanınızı müəyyən etmək mümkün olmadı. Yenidən cəhd edin və ya şəhəri əl ilə seçin."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "We couldn't determine your location. Try again or choose a city manually."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось определить вашу геопозицию. Попробуйте ещё раз или выберите город вручную."
           }
         }
       }
@@ -1054,10 +2314,22 @@
             "value" : "المدن المفضلة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seçilmiş şəhərlər"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Favorite Cities"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избранные города"
           }
         }
       }
@@ -1071,10 +2343,51 @@
             "value" : "%1$lld %2$@ %3$lld هـ"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld %2$@, hicri %3$lld"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$lld %2$@, %3$lld AH"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld %2$@, %3$lld г. х."
+          }
+        }
+      }
+    },
+    "prayer_times.minber_unavailable" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لا يتوفر جدول من Minber لهذه المدينة أو لهذا التاريخ. اختر مدينة أذربيجانية مدعومة أو طريقة حساب أخرى."
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu şəhər və ya tarix üçün Minber cədvəli mövcud deyil. Dəstəklənən Azərbaycan şəhərini və ya başqa hesablama üsulunu seçin."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Minber timetable is available for this city or date. Choose a supported Azerbaijani city, or select another calculation method."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Для этого города или даты нет расписания Minber. Выберите поддерживаемый город Азербайджана или другой метод расчёта."
           }
         }
       }
@@ -1088,10 +2401,22 @@
             "value" : "الصلاة القادمة: %1$@ خلال %2$@"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Növbəti namaz: %1$@, %2$@ sonra"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Next prayer: %1$@ in %2$@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Следующий намаз: %1$@ через %2$@"
           }
         }
       }
@@ -1105,10 +2430,22 @@
             "value" : "لا توجد مدن مفضلة بعد. اضغط + للبحث عن مدينة وحفظها."
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hələ seçilmiş şəhər yoxdur. Şəhər tapıb yadda saxlamaq üçün + düyməsinə toxunun."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "No favorite cities yet. Tap + to find and save a city."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избранных городов пока нет. Нажмите +, чтобы найти и сохранить город."
           }
         }
       }
@@ -1122,10 +2459,22 @@
             "value" : "حان وقت صلاة %@."
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ namazının vaxtıdır."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "It's time for %@ prayer."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настало время намаза %@."
           }
         }
       }
@@ -1139,10 +2488,22 @@
             "value" : "صلاة %@"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ namazı"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ Prayer"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Намаз %@"
           }
         }
       }
@@ -1156,10 +2517,22 @@
             "value" : "ابحث عن مدينة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Şəhər axtar"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Search for a city"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поиск города"
           }
         }
       }
@@ -1173,10 +2546,22 @@
             "value" : "البحث في %@"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Axtarış: %@"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Searching in %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поиск: %@"
           }
         }
       }
@@ -1190,10 +2575,22 @@
             "value" : "اختر التاريخ"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tarix seç"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Select Date"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбрать дату"
           }
         }
       }
@@ -1207,10 +2604,22 @@
             "value" : "اختر موقعًا لعرض أوقات الصلاة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Namaz vaxtlarını görmək üçün məkan seçin"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Select a location to see prayer times"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите местоположение, чтобы увидеть время намазов"
           }
         }
       }
@@ -1224,10 +2633,22 @@
             "value" : "أوقات الصلاة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Namaz vaxtları"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Prayer Times"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Время намазов"
           }
         }
       }
@@ -1241,10 +2662,22 @@
             "value" : "السماح بالوصول إلى الموقع"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Məkana girişə icazə ver"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Allow Location Access"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разрешить доступ к геопозиции"
           }
         }
       }
@@ -1258,10 +2691,22 @@
             "value" : "قد يؤثر التداخل المغناطيسي القريب من الأجسام المعدنية أو الأجهزة الإلكترونية على الدقة."
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Metal əşyaların və ya elektron cihazların yaxınlığındakı maqnit maneələri dəqiqliyə təsir edə bilər."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Magnetic interference near metal objects or electronics can affect accuracy."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Магнитные помехи рядом с металлическими предметами или электроникой могут влиять на точность."
           }
         }
       }
@@ -1275,10 +2720,22 @@
             "value" : "حرّك هاتفك على شكل رقم 8 إذا بدا الاتجاه غير صحيح."
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İstiqamət səhv görünürsə, telefonunuzu səkkiz formasında hərəkət etdirin."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Move your phone in a figure-8 if the direction seems incorrect."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Если направление кажется неверным, опишите телефоном восьмёрку."
           }
         }
       }
@@ -1292,10 +2749,22 @@
             "value" : "شرق"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ş"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "E"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В"
           }
         }
       }
@@ -1309,10 +2778,22 @@
             "value" : "شرق شمالي شرقي"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ŞŞmŞ"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "ENE"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ВСВ"
           }
         }
       }
@@ -1326,10 +2807,22 @@
             "value" : "شرق جنوبي شرقي"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ŞCŞ"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "ESE"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ВЮВ"
           }
         }
       }
@@ -1343,10 +2836,22 @@
             "value" : "شمال"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Şm"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "N"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "С"
           }
         }
       }
@@ -1360,10 +2865,22 @@
             "value" : "شمال شرقي"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ŞmŞ"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NE"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "СВ"
           }
         }
       }
@@ -1377,10 +2894,22 @@
             "value" : "شمال شمالي شرقي"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ŞmŞmŞ"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NNE"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ССВ"
           }
         }
       }
@@ -1394,10 +2923,22 @@
             "value" : "شمال شمالي غربي"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ŞmŞmQ"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NNW"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ССЗ"
           }
         }
       }
@@ -1411,10 +2952,22 @@
             "value" : "شمال غربي"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ŞmQ"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NW"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "СЗ"
           }
         }
       }
@@ -1428,10 +2981,22 @@
             "value" : "جنوب"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "S"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ю"
           }
         }
       }
@@ -1445,10 +3010,22 @@
             "value" : "جنوب شرقي"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CŞ"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "SE"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ЮВ"
           }
         }
       }
@@ -1462,10 +3039,22 @@
             "value" : "جنوب جنوبي شرقي"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CCŞ"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "SSE"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ЮЮВ"
           }
         }
       }
@@ -1479,10 +3068,22 @@
             "value" : "جنوب جنوبي غربي"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CCQ"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "SSW"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ЮЮЗ"
           }
         }
       }
@@ -1496,10 +3097,22 @@
             "value" : "جنوب غربي"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CQ"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "SW"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ЮЗ"
           }
         }
       }
@@ -1513,10 +3126,22 @@
             "value" : "غرب"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Q"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "W"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "З"
           }
         }
       }
@@ -1530,10 +3155,22 @@
             "value" : "غرب شمالي غربي"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "QŞmQ"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "WNW"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ЗСЗ"
           }
         }
       }
@@ -1547,10 +3184,22 @@
             "value" : "غرب جنوبي غربي"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "QCQ"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "WSW"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ЗЮЗ"
           }
         }
       }
@@ -1564,10 +3213,22 @@
             "value" : "الكعبة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kəbə"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kaaba"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кааба"
           }
         }
       }
@@ -1581,10 +3242,22 @@
             "value" : "البوصلة الحية غير متوفرة، يتم عرض الاتجاه المحسوب من الشمال الحقيقي."
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canlı kompas əlçatan deyil — həqiqi şimala nəzərən hesablanmış istiqamət göstərilir."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Live compass unavailable — showing the calculated direction from true north."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Компас недоступен — показано рассчитанное направление относительно истинного севера."
           }
         }
       }
@@ -1598,10 +3271,22 @@
             "value" : "تم رفض الوصول إلى الموقع. فعّله من الإعدادات لاستخدام بوصلة القبلة."
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Məkana girişə icazə verilməyib. Qiblə kompasından istifadə etmək üçün parametrlərdə icazə verin."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Location access is denied. Enable it in Settings to use the Qibla compass."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доступ к геопозиции запрещён. Разрешите его в настройках, чтобы использовать компас киблы."
           }
         }
       }
@@ -1615,10 +3300,22 @@
             "value" : "اسمح بالوصول إلى الموقع لتحديد اتجاه القبلة من مكانك."
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Olduğunuz yerdən qiblə istiqamətini tapmaq üçün məkana girişə icazə verin."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Allow location access to find the Qibla direction from where you are."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разрешите доступ к геопозиции, чтобы определить направление киблы."
           }
         }
       }
@@ -1632,10 +3329,22 @@
             "value" : "الوصول إلى الموقع مقيد على هذا الجهاز."
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu cihazda məkana giriş məhdudlaşdırılıb."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Location access is restricted on this device."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доступ к геопозиции на этом устройстве ограничен."
           }
         }
       }
@@ -1649,10 +3358,22 @@
             "value" : "حدث خطأ أثناء تحديد موقعك."
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Məkanınız müəyyən edilərkən xəta baş verdi."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Something went wrong while finding your location."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "При определении геопозиции произошла ошибка."
           }
         }
       }
@@ -1666,10 +3387,22 @@
             "value" : "القبلة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Qiblə"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Qibla"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кибла"
           }
         }
       }
@@ -1683,10 +3416,22 @@
             "value" : "إضافة إلى المفضلة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seçilmişlərə əlavə et"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Add to favorites"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить в избранное"
           }
         }
       }
@@ -1700,10 +3445,22 @@
             "value" : "جميع السور"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bütün surələr"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "All Surahs"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Все суры"
           }
         }
       }
@@ -1717,10 +3474,22 @@
             "value" : "العربية فقط"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yalnız ərəbcə"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Arabic Only"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Только арабский"
           }
         }
       }
@@ -1734,10 +3503,22 @@
             "value" : "العربية + الترجمة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ərəbcə + tərcümə"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Arabic + Translation"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Арабский + перевод"
           }
         }
       }
@@ -1751,10 +3532,22 @@
             "value" : "آية %lld"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayə %lld"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ayah %lld"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Аят %lld"
           }
         }
       }
@@ -1768,10 +3561,22 @@
             "value" : "آية اليوم"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Günün ayəsi"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ayah of the Day"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Аят дня"
           }
         }
       }
@@ -1785,10 +3590,22 @@
             "value" : "اختر السورة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Surə seç"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Choose Surah"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбрать суру"
           }
         }
       }
@@ -1802,10 +3619,22 @@
             "value" : "متابعة القراءة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oxumağa davam et"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Continue reading"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Продолжить чтение"
           }
         }
       }
@@ -1819,10 +3648,22 @@
             "value" : "آيتك اليومية جاهزة للقراءة."
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gündəlik Quran ayəniz oxumaq üçün hazırdır."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Your daily Quran ayah is ready to read."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ваш ежедневный аят Корана готов к чтению."
           }
         }
       }
@@ -1836,10 +3677,22 @@
             "value" : "تعذر تحميل محتوى القرآن. يرجى المحاولة مرة أخرى."
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quran mətnini yükləmək mümkün olmadı. Yenidən cəhd edin."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "We couldn't load the Quran content. Please try again."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось загрузить текст Корана. Попробуйте ещё раз."
           }
         }
       }
@@ -1853,10 +3706,22 @@
             "value" : "تعذر تحميل هذه السورة. يرجى المحاولة مرة أخرى."
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu surəni yükləmək mümkün olmadı. Yenidən cəhd edin."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "We couldn't load this surah. Please try again."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось загрузить эту суру. Попробуйте ещё раз."
           }
         }
       }
@@ -1870,10 +3735,22 @@
             "value" : "الآيات المفضلة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seçilmiş ayələr"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Favorite Ayahs"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избранные аяты"
           }
         }
       }
@@ -1887,10 +3764,22 @@
             "value" : "السور المفضلة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seçilmiş surələr"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Favorite Surahs"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избранные суры"
           }
         }
       }
@@ -1904,10 +3793,22 @@
             "value" : "حجم الخط"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Şrift ölçüsü"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Font Size"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Размер шрифта"
           }
         }
       }
@@ -1921,10 +3822,22 @@
             "value" : "اضغط على النجمة بجانب سورة أو آية لحفظها هنا."
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Surəni və ya ayəni burada saxlamaq üçün yanındakı ulduza toxunun."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tap the star beside a surah or ayah to save it here."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нажмите на звезду рядом с сурой или аятом, чтобы сохранить их здесь."
           }
         }
       }
@@ -1938,10 +3851,22 @@
             "value" : "فتح القارئ الكامل"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tam oxu görünüşünü aç"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Open Full Reader"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открыть полный текст"
           }
         }
       }
@@ -1955,10 +3880,22 @@
             "value" : "فتح في القارئ"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oxu görünüşündə aç"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Open in Reader"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открыть для чтения"
           }
         }
       }
@@ -1972,10 +3909,22 @@
             "value" : "يُحفظ موضع القراءة تلقائيًا"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oxu irəliləyişi avtomatik yadda saxlanılır"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Reading progress saved automatically"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Место чтения сохраняется автоматически"
           }
         }
       }
@@ -1989,10 +3938,22 @@
             "value" : "وضع القراءة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oxu rejimi"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Reading Mode"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Режим чтения"
           }
         }
       }
@@ -2006,10 +3967,22 @@
             "value" : "إعدادات القراءة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oxu parametrləri"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Reading Settings"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настройки чтения"
           }
         }
       }
@@ -2023,10 +3996,22 @@
             "value" : "القرآن %1$lld:%2$lld"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quran %1$lld:%2$lld"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Quran %1$lld:%2$lld"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Коран %1$lld:%2$lld"
           }
         }
       }
@@ -2040,10 +4025,22 @@
             "value" : "إزالة من المفضلة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seçilmişlərdən sil"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Remove from favorites"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить из избранного"
           }
         }
       }
@@ -2057,10 +4054,22 @@
             "value" : "النتائج"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nəticələr"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Results"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Результаты"
           }
         }
       }
@@ -2074,10 +4083,22 @@
             "value" : "ابحث عن سورة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Surə axtar"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Search Surah"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поиск суры"
           }
         }
       }
@@ -2091,10 +4112,22 @@
             "value" : "اختر الآية"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayə seç"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Select Ayah"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбрать аят"
           }
         }
       }
@@ -2108,10 +4141,22 @@
             "value" : "اختر السورة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Surə seç"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Select Surah"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбрать суру"
           }
         }
       }
@@ -2125,10 +4170,22 @@
             "value" : "اختر سورة لبدء القراءة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oxumağa başlamaq üçün surə seçin"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Select a Surah to start reading"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите суру, чтобы начать чтение"
           }
         }
       }
@@ -2142,10 +4199,22 @@
             "value" : "القرآن"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quran"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Quran"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Коран"
           }
         }
       }
@@ -2159,10 +4228,22 @@
             "value" : "الترجمة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tərcümə"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Translation"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перевод"
           }
         }
       }
@@ -2173,7 +4254,13 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "الرفيق الإسلامي"
+            "value" : "Islamic Companion"
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Islamic Companion"
           }
         },
         "en" : {
@@ -2181,8 +4268,15 @@
             "state" : "translated",
             "value" : "Islamic Companion"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Islamic Companion"
+          }
         }
-      }
+      },
+      "comment" : "Brand name. Keep Islamic Companion unchanged in every language."
     },
     "settings.about_body" : {
       "extractionState" : "manual",
@@ -2193,10 +4287,22 @@
             "value" : "يوفر هذا التطبيق أوقات الصلاة واتجاه القبلة والقرآن الكريم لدعم عبادتك اليومية."
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu tətbiq gündəlik ibadətinizə dəstək olmaq üçün namaz vaxtlarını, qiblə istiqamətini və Qurani-Kərimi təqdim edir."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "This app provides prayer times, Qibla direction, and the Holy Quran to support your daily worship."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Приложение помогает в ежедневном поклонении: показывает время намазов, направление киблы и Священный Коран."
           }
         }
       }
@@ -2210,10 +4316,22 @@
             "value" : "حول"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Haqqında"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "About"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "О приложении"
           }
         }
       }
@@ -2227,10 +4345,22 @@
             "value" : "عن التطبيق"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Haqqımızda"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "About Us"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "О нас"
           }
         }
       }
@@ -2244,10 +4374,22 @@
             "value" : "اضبط كل وقت صلاة بالدقائق إذا لم يطابق مسجدك المحلي أو تفضيلك."
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hər namazın vaxtı yerli məscidinizin cədvəlinə və ya seçiminizə uyğun gəlmirsə, onu dəqiqə ilə tənzimləyin."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fine-tune each prayer time in minutes if it doesn't match your local mosque or preference."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скорректируйте время каждого намаза в минутах, если оно отличается от расписания вашей мечети или ваших предпочтений."
           }
         }
       }
@@ -2261,10 +4403,22 @@
             "value" : "السماح بالإشعارات"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bildirişlərə icazə ver"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Allow Notifications"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разрешить уведомления"
           }
         }
       }
@@ -2278,10 +4432,22 @@
             "value" : "داكن"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tünd"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dark"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тёмная"
           }
         }
       }
@@ -2295,10 +4461,22 @@
             "value" : "فاتح"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Açıq"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Light"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Светлая"
           }
         }
       }
@@ -2312,10 +4490,22 @@
             "value" : "المظهر"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Görünüş"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Appearance"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оформление"
           }
         }
       }
@@ -2329,10 +4519,22 @@
             "value" : "النظام"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sistem"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "System"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Системная"
           }
         }
       }
@@ -2346,10 +4548,22 @@
             "value" : "مذهب صلاة العصر"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Əsr namazı üçün məzhəb"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Asr Madhab"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мазхаб для асра"
           }
         }
       }
@@ -2363,10 +4577,22 @@
             "value" : "طريقة الحساب والمذهب"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hesablama və məzhəb"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Calculation & Madhab"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расчёт и мазхаб"
           }
         }
       }
@@ -2380,10 +4606,22 @@
             "value" : "طريقة الحساب"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hesablama üsulu"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Calculation Method"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Метод расчёта"
           }
         }
       }
@@ -2397,10 +4635,22 @@
             "value" : "المدينة الحالية"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cari şəhər"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Current City"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текущий город"
           }
         }
       }
@@ -2414,10 +4664,22 @@
             "value" : "تذكير الآية اليومية"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gündəlik ayə xatırlatması"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Daily Ayah Reminder"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ежедневное напоминание об аяте"
           }
         }
       }
@@ -2431,10 +4693,22 @@
             "value" : "افتراضي"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standart"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Default"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "По умолчанию"
           }
         }
       }
@@ -2448,10 +4722,22 @@
             "value" : "جارٍ التحديد…"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Müəyyən edilir…"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Detecting…"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Определение…"
           }
         }
       }
@@ -2465,10 +4751,22 @@
             "value" : "فعّل الإشعارات من الإعدادات"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parametrlərdə bildirişləri aktiv et"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enable Notifications in Settings"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Включить уведомления в настройках"
           }
         }
       }
@@ -2482,10 +4780,22 @@
             "value" : "معلومات"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Məlumat"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Information"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Информация"
           }
         }
       }
@@ -2499,10 +4809,22 @@
             "value" : "تلقائي"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avtomatik"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Automatic"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автоматически"
           }
         }
       }
@@ -2516,10 +4838,22 @@
             "value" : "يدوي"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Əl ilə"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Manual"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вручную"
           }
         }
       }
@@ -2533,10 +4867,22 @@
             "value" : "وضع الموقع"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Məkan rejimi"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Location Mode"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Режим геопозиции"
           }
         }
       }
@@ -2550,10 +4896,22 @@
             "value" : "الموقع"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Məkan"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Location"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Геопозиция"
           }
         }
       }
@@ -2567,10 +4925,22 @@
             "value" : "حنفي"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hənəfi"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hanafi"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ханафитский"
           }
         }
       }
@@ -2584,10 +4954,22 @@
             "value" : "عام (شافعي، مالكي، حنبلي)"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standart (Şafii, Maliki, Hənbəli)"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Standard (Shafi, Maliki, Hanbali)"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стандартный (шафиитский, маликитский, ханбалитский)"
           }
         }
       }
@@ -2601,10 +4983,51 @@
             "value" : "التعديلات اليدوية"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Əl ilə düzəlişlər"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Manual Adjustments"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ручная корректировка"
+          }
+        }
+      }
+    },
+    "settings.minber_explanation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يستخدم جدول مواقيت الصلاة المنشور للمدينة الأذربيجانية المختارة من إدارة مسلمي القوقاز عبر Minber.az. لا يغيّر اختيار المذهب هذا الجدول الثابت. يُحفظ تفضيل المذهب للطرق الأخرى."
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minber.az vasitəsilə seçilmiş Azərbaycan şəhəri üçün dərc olunmuş QMİ cədvəlindən istifadə edilir. Məzhəb seçimi bu sabit cədvəli dəyişmir. Məzhəb seçiminiz digər üsullar üçün saxlanılır."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uses the selected Azerbaijani city’s published QMİ timetable via Minber.az. Madhab selection does not change this fixed timetable. Your madhab preference is kept for other methods."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Используется опубликованное расписание Управления мусульман Кавказа для выбранного города Азербайджана через Minber.az. Выбор мазхаба не меняет это фиксированное расписание. Ваш мазхаб сохраняется для других методов."
           }
         }
       }
@@ -2618,10 +5041,22 @@
             "value" : "%@ دقيقة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ dəq"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ min"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ мин"
           }
         }
       }
@@ -2635,10 +5070,22 @@
             "value" : "لا شيء"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yoxdur"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "None"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет"
           }
         }
       }
@@ -2652,10 +5099,22 @@
             "value" : "تعذّرت جدولة الإشعار. يرجى المحاولة مرة أخرى."
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bildirişi planlaşdırmaq mümkün olmadı. Yenidən cəhd edin."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Could not schedule the notification. Please try again."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось запланировать уведомление. Попробуйте ещё раз."
           }
         }
       }
@@ -2669,10 +5128,22 @@
             "value" : "اسمح بالإشعارات في إعدادات iPhone لتلقي التذكيرات."
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xatırlatmalar almaq üçün iPhone parametrlərində bildirişlərə icazə verin."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Allow notifications in iPhone Settings to receive reminders."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разрешите уведомления в настройках iPhone, чтобы получать напоминания."
           }
         }
       }
@@ -2686,10 +5157,58 @@
             "value" : "عدد التذكيرات المجدولة: %lld"
           }
         },
+        "az" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld xatırlatma planlaşdırılıb"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld xatırlatma planlaşdırılıb"
+                }
+              }
+            }
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld reminders scheduled"
+          }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Запланировано %lld напоминания"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Запланировано %lld напоминаний"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Запланировано %lld напоминание"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Запланировано %lld напоминания"
+                }
+              }
+            }
           }
         }
       }
@@ -2697,16 +5216,28 @@
     "settings.prayer_notifications_section" : {
       "extractionState" : "manual",
       "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "إشعارات الصلاة"
-          }
-        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Prayer Notifications"
+            "value" : "Prayer & Sunrise Notifications"
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إشعارات الصلاة والشروق"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уведомления о намазах и восходе"
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Namaz və günəşin doğması bildirişləri"
           }
         }
       }
@@ -2720,10 +5251,22 @@
             "value" : "إعدادات الصلاة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Namaz parametrləri"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Prayer Settings"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настройки намаза"
           }
         }
       }
@@ -2737,10 +5280,22 @@
             "value" : "معاينة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Önbaxış"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Preview"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Предпросмотр"
           }
         }
       }
@@ -2754,10 +5309,22 @@
             "value" : "إشعارات القرآن"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quran bildirişləri"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Quran Notifications"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уведомления о Коране"
           }
         }
       }
@@ -2771,10 +5338,22 @@
             "value" : "المدينة المختارة"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seçilmiş şəhər"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Selected City"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбранный город"
           }
         }
       }
@@ -2788,10 +5367,22 @@
             "value" : "إرسال إشعار تجريبي"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sınaq bildirişi göndər"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Send Test Notification"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отправить тестовое уведомление"
           }
         }
       }
@@ -2805,10 +5396,22 @@
             "value" : "الصوت"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Səs"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sound"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Звук"
           }
         }
       }
@@ -2822,10 +5425,22 @@
             "value" : "الإعدادات"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parametrlər"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Settings"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настройки"
           }
         }
       }
@@ -2839,10 +5454,22 @@
             "value" : "هكذا ستبدو تذكيرات الصلاة الخاصة بك."
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Namaz xatırlatmalarınız belə görünəcək."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "This is what your prayer reminders will look like."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Так будут выглядеть ваши напоминания о намазах."
           }
         }
       }
@@ -2856,10 +5483,22 @@
             "value" : "تمت جدولة إشعار تجريبي. سيظهر خلال ٥ ثوانٍ."
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sınaq bildirişi planlaşdırıldı. 5 saniyə sonra görünəcək."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Test notification scheduled. It will appear in 5 seconds."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тестовое уведомление запланировано. Оно появится через 5 секунд."
           }
         }
       }
@@ -2873,10 +5512,22 @@
             "value" : "إشعار تجريبي"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sınaq bildirişi"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Test Notification"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тестовое уведомление"
           }
         }
       }
@@ -2890,10 +5541,22 @@
             "value" : "الإصدار"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Versiya"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Version"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Версия"
           }
         }
       }
@@ -2907,17 +5570,79 @@
             "value" : "الإصدار %@"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Versiya %@"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Version %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Версия %@"
+          }
+        }
+      }
+    },
+    "Tap a number to enter minutes, or use minus and plus for one-minute changes. Adjust up to 60 minutes earlier or later." : {
+      "comment" : "A footer for the prayer adjustment section.",
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dəqiqələri daxil etmək üçün ədədə toxunun və ya bir dəqiqəlik dəyişikliklər üçün mənfi və müsbət düymələrindən istifadə edin. Vaxtı 60 dəqiqəyədək daha tez və ya daha gec təyin edin."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нажмите на число, чтобы ввести минуты, или используйте минус и плюс для изменения на одну минуту. Можно сдвинуть время на 60 минут раньше или позже."
+          }
+        }
+      }
+    },
+    "Tap to enter minutes" : {
+      "comment" : "A hint for the user to tap a number to enter minutes.",
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dəqiqələri daxil etmək üçün toxunun"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нажмите, чтобы ввести минуты"
           }
         }
       }
     },
     "Translation credits appear with Quran content. Text and translations belong to their respective rights holders." : {
       "comment" : "A footer for the About Us screen.",
-      "isCommentAutoGenerated" : true
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tərcümə müəllifləri Quran mətni ilə birlikdə göstərilir. Mətn və tərcümələr müvafiq hüquq sahiblərinə məxsusdur."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сведения о переводчиках указаны рядом с текстом Корана. Права на тексты и переводы принадлежат их правообладателям."
+          }
+        }
+      }
     },
     "widget.current_location" : {
       "extractionState" : "stale",
@@ -2928,21 +5653,119 @@
             "value" : "الموقع الحالي"
           }
         },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cari məkan"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Current location"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текущая геопозиция"
           }
         }
       }
     },
     "Your reading place is preserved" : {
       "comment" : "A message that informs the user that their reading progress is preserved.",
-      "isCommentAutoGenerated" : true
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oxuduğunuz yer yadda saxlanılıb"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ваше место чтения сохранено"
+          }
+        }
+      }
     },
     "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ" : {
       "comment" : "A sample text for the font size slider.",
-      "isCommentAutoGenerated" : true
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
+          }
+        }
+      }
+    },
+    "settings.language" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Language"
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اللغة"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Язык"
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dil"
+          }
+        }
+      }
+    },
+    "settings.language_system" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Follow iOS Settings"
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اتباع إعدادات iOS"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Как в настройках iOS"
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iOS parametrlərinə uyğun"
+          }
+        }
+      }
     }
   },
   "version" : "1.1"

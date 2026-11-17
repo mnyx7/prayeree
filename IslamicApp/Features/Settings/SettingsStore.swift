@@ -42,6 +42,7 @@ final class SettingsStore {
         case favoriteToggled(City)
         case citySearchQueryChanged(String)
         case citySearchResultsLoaded([City])
+        case sunriseNotificationToggled
         case prayerNotificationToggled(PrayerName)
         case quranNotificationToggled
         case notificationPermissionRequested
@@ -140,6 +141,12 @@ final class SettingsStore {
             preferencesStore.setValue(state.prayerNotificationPreference, for: Self.prayerNotificationKey)
             appStore.send(.notificationPreferencesChanged)
             if state.prayerNotificationPreference.isEnabled(prayer) { requestNotificationPermissionIfNeeded() }
+
+        case .sunriseNotificationToggled:
+            state.prayerNotificationPreference.isSunriseEnabled.toggle()
+            preferencesStore.setValue(state.prayerNotificationPreference, for: Self.prayerNotificationKey)
+            appStore.send(.notificationPreferencesChanged)
+            if state.prayerNotificationPreference.isSunriseEnabled { requestNotificationPermissionIfNeeded() }
 
         case .quranNotificationToggled:
             state.dailyQuranNotificationEnabled.toggle()

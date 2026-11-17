@@ -17,6 +17,7 @@ struct PrayerTimesRepository: PrayerTimesRepositoryProtocol {
         calculationMethod: PrayerCalculationMethod,
         madhab: MadhabOption,
         adjustment: PrayerAdjustment,
+        city: City? = nil,
         timeZoneIdentifier: String? = nil
     ) -> AsyncStream<PrayerTimesRepositoryResult> {
         let key = Self.cacheKey(
@@ -24,7 +25,8 @@ struct PrayerTimesRepository: PrayerTimesRepositoryProtocol {
             coordinates: coordinates,
             calculationMethod: calculationMethod,
             madhab: madhab,
-            adjustment: adjustment
+            adjustment: adjustment,
+            city: city
         )
 
         return AsyncStream { continuation in
@@ -55,7 +57,8 @@ struct PrayerTimesRepository: PrayerTimesRepositoryProtocol {
                         coordinates: coordinates,
                         calculationMethod: calculationMethod,
                         madhab: madhab,
-                        adjustment: adjustment
+                        adjustment: adjustment,
+                        city: city
                     )
                     await cacheStore.save(fresh, for: key)
                     continuation.yield(
@@ -95,14 +98,15 @@ struct PrayerTimesRepository: PrayerTimesRepositoryProtocol {
         coordinates: Coordinates,
         calculationMethod: PrayerCalculationMethod,
         madhab: MadhabOption,
-        adjustment: PrayerAdjustment
+        adjustment: PrayerAdjustment,
+        city: City? = nil
     ) -> CacheKey {
         let rounded = coordinates.rounded(toDecimalPlaces: 2)
         let dateKey = "\(dateComponents.year ?? 0)-\(dateComponents.month ?? 0)-\(dateComponents.day ?? 0)"
         let adjustmentKey = PrayerName.allCases
             .map { String(adjustment.minutes(for: $0)) }
             .joined(separator: ",")
-        let identifier = [
+        var identifier = [
             dateKey,
             "\(rounded.latitude)",
             "\(rounded.longitude)",
@@ -110,6 +114,9 @@ struct PrayerTimesRepository: PrayerTimesRepositoryProtocol {
             "\(madhab.rawValue)",
             adjustmentKey
         ].joined(separator: "_")
+        if calculationMethod == .qmiMinber {
+            identifier += "_minber_" + (city.map { $0.countryCode + "_" + MinberPrayerTimetable.normalized($0.name) } ?? "unresolved")
+        }
         return CacheKey(namespace: "prayerTimes", identifier: identifier)
     }
 }

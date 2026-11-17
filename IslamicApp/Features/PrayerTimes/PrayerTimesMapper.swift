@@ -67,6 +67,14 @@ enum PrayerTimesMapper {
             throw NetworkError.decodingFailed("Unrecognized Hijri date components")
         }
 
+        let sunrise = data.timings.sunrise.flatMap { raw -> Date? in
+            let cleaned = raw.split(separator: " ").first.map(String.init) ?? raw
+            let parts = cleaned.split(separator: ":")
+            guard parts.count == 2, let hour = Int(parts[0]), let minute = Int(parts[1]),
+                  (0...23).contains(hour), (0...59).contains(minute) else { return nil }
+            return try? makeDate(from: raw)
+        }
+
         return PrayerTimes(
             date: dayStart,
             hijriDate: HijriDate(day: hijriDay, month: hijriMonth, year: hijriYear),
@@ -74,7 +82,8 @@ enum PrayerTimesMapper {
             coordinates: coordinates,
             calculationMethod: calculationMethod,
             madhab: madhab,
-            timeZoneIdentifier: data.meta.timezone
+            timeZoneIdentifier: data.meta.timezone,
+            sunrise: sunrise
         )
     }
 }

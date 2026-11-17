@@ -13,6 +13,17 @@ protocol PrayerTimesServiceProtocol: Sendable {
         coordinates: Coordinates,
         calculationMethod: PrayerCalculationMethod,
         madhab: MadhabOption,
-        adjustment: PrayerAdjustment
+        adjustment: PrayerAdjustment,
+        city: City?
     ) async throws -> PrayerTimes
+}
+
+extension PrayerTimesServiceProtocol {
+    func fetchPrayerTimes(dateComponents: DateComponents, coordinates: Coordinates,
+                          calculationMethod: PrayerCalculationMethod, madhab: MadhabOption,
+                          adjustment: PrayerAdjustment) async throws -> PrayerTimes {
+        try await fetchPrayerTimes(dateComponents: dateComponents, coordinates: coordinates,
+                                   calculationMethod: calculationMethod, madhab: madhab,
+                                   adjustment: adjustment, city: nil)
+    }
 }

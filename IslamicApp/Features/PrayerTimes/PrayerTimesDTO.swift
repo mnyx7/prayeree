@@ -9,7 +9,7 @@ import Foundation
 
 // Matches AlAdhan's /v1/timings/{date} response shape. Only the fields the
 // domain layer actually needs are declared — JSONDecoder ignores the rest
-// (Sunrise, Sunset, Imsak, Midnight, method metadata, etc.).
+// (Sunset, Imsak, Midnight, method metadata, etc.).
 
 struct AlAdhanTimingsResponseDTO: Decodable, Sendable {
     let data: AlAdhanTimingsDataDTO
@@ -27,8 +27,10 @@ struct AlAdhanTimingsDTO: Decodable, Sendable {
     let asr: String
     let maghrib: String
     let isha: String
+    var sunrise: String? = nil
 
     enum CodingKeys: String, CodingKey {
+        case sunrise = "Sunrise"
         case fajr = "Fajr"
         case dhuhr = "Dhuhr"
         case asr = "Asr"

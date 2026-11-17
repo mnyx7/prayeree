@@ -5,9 +5,8 @@
 //  Created by Minaya on 14/11/2026.
 //
 
-/// Raw values correspond to AlAdhan API's `method` parameter. V1 has a single
-/// provider, so mirroring its IDs directly avoids a redundant lookup table;
-/// revisit if a second provider is added (see Phase 0 assumptions).
+/// Existing raw values are persisted preferences and must remain stable.
+/// 1000 identifies the separate Minber/QMİ timetable provider, not an AlAdhan method.
 enum PrayerCalculationMethod: Int, Codable, CaseIterable, Identifiable, Sendable {
     case karachi = 1
     case northAmerica = 2
@@ -21,6 +20,7 @@ enum PrayerCalculationMethod: Int, Codable, CaseIterable, Identifiable, Sendable
     case singapore = 11
     case turkey = 13
     case moonsightingCommittee = 15
+    case qmiMinber = 1000
 
     // Keep persisted raw values stable. AlAdhan's Dubai preset is 16; 8 is Gulf Region.
     var aladhanID: Int { self == .dubai ? 16 : rawValue }

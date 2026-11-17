@@ -20,6 +20,9 @@ struct PrayerTimes: Codable, Equatable, Sendable {
     /// told otherwise, which silently shows the wrong clock time whenever the
     /// device's system timezone differs from the prayed-for location's.
     let timeZoneIdentifier: String
+    /// Informational event, deliberately separate from the five obligatory prayers.
+    /// Optional so schedules cached by older versions still decode.
+    var sunrise: Date? = nil
 
     var timeZone: TimeZone {
         TimeZone(identifier: timeZoneIdentifier) ?? .current

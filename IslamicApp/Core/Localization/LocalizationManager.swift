@@ -8,11 +8,19 @@
 import Foundation
 
 enum LocalizationManager {
+    static let languagePreferenceKey = "app.language"
+
+    /// An empty preference follows the language selected by iOS for this app.
+    static var locale: Locale {
+        let code = UserDefaults.standard.string(forKey: languagePreferenceKey) ?? ""
+        return ["en", "ar", "ru", "az"].contains(code) ? Locale(identifier: code) : .current
+    }
+
     /// Whether the current app language reads right-to-left — drives layout
     /// mirroring decisions beyond SwiftUI's automatic ones (e.g. deciding
     /// whether to force RTL on Arabic Quran text regardless of app language).
     static var isRightToLeft: Bool {
-        Locale.current.language.characterDirection == .rightToLeft
+        locale.language.characterDirection == .rightToLeft
     }
 
     /// Builds a natural-language, VoiceOver-friendly countdown label with
@@ -31,7 +39,8 @@ enum LocalizationManager {
         return String(
             localized: "prayer_times.countdown_accessibility_format",
             defaultValue: "Next prayer: \(prayerName) in \(minutes) minutes",
-            table: "Localizable"
+            table: "Localizable",
+            locale: locale
         )
     }
 }

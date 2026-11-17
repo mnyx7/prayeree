@@ -28,6 +28,7 @@ protocol PrayerTimesRepositoryProtocol: Sendable {
         calculationMethod: PrayerCalculationMethod,
         madhab: MadhabOption,
         adjustment: PrayerAdjustment,
+        city: City?,
         timeZoneIdentifier: String?
     ) -> AsyncStream<PrayerTimesRepositoryResult>
 }
@@ -35,9 +36,9 @@ protocol PrayerTimesRepositoryProtocol: Sendable {
 extension PrayerTimesRepositoryProtocol {
     func prayerTimes(dateComponents: DateComponents, coordinates: Coordinates,
                      calculationMethod: PrayerCalculationMethod, madhab: MadhabOption,
-                     adjustment: PrayerAdjustment) -> AsyncStream<PrayerTimesRepositoryResult> {
+                     adjustment: PrayerAdjustment, timeZoneIdentifier: String? = nil) -> AsyncStream<PrayerTimesRepositoryResult> {
         prayerTimes(dateComponents: dateComponents, coordinates: coordinates,
                     calculationMethod: calculationMethod, madhab: madhab,
-                    adjustment: adjustment, timeZoneIdentifier: nil)
+                    adjustment: adjustment, city: nil, timeZoneIdentifier: timeZoneIdentifier)
     }
 }

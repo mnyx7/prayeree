@@ -29,3 +29,23 @@ struct PrayerTimeRow: View {
         )
     }
 }
+
+/// Sunrise is displayed alongside prayer times but never styled as the next prayer.
+struct SunriseTimeRow: View {
+    let date: Date
+    let timeZone: TimeZone
+
+    var body: some View {
+        HStack {
+            Text(LocalizedKey.PrayerTimes.sunrise)
+                .font(.body)
+                .foregroundStyle(AppColor.textPrimary)
+            Spacer()
+            Text(DateFormatterFactory.shortTime(timeZone: timeZone).string(from: date))
+                .font(.body)
+                .foregroundStyle(AppColor.textSecondary)
+        }
+        .appRowStyle()
+        .accessibilityElement(children: .combine)
+    }
+}

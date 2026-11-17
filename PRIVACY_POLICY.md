@@ -1,6 +1,6 @@
 # Islamic Companion — Privacy Policy
 
-**Last updated:** 14 November 2026
+**Last updated:** 17 November 2026
 
 **Developer:** Minaya ([mnyx7](https://github.com/mnyx7))
 
@@ -14,23 +14,24 @@ The current app has no developer-operated account, login, advertising, analytics
 
 | Information | Purpose | Where it is processed/stored |
 | --- | --- | --- |
-| Current coordinates, if you allow location access | Automatic prayer location and Qibla bearing | Coordinates are used on-device, may be stored as the last resolved location, are sent to AlAdhan for prayer-time requests, and can be sent to Apple for reverse geocoding |
-| Manually selected cities, favorites, and recent cities | Prayer location and quick switching | Stored on-device; selected coordinates are sent to AlAdhan when requesting prayer times |
+| Current coordinates, if you allow location access | Automatic prayer location and Qibla bearing | Coordinates are used on-device, may be stored as the last resolved location, are sent to AlAdhan when that source is used for prayer/sunrise requests, and can be sent to Apple for reverse geocoding |
+| Manually selected cities, favorites, and recent cities | Prayer location and quick switching | Stored on-device; AlAdhan receives selected coordinates for its prayer/sunrise requests. With QMİ/Minber selected, Minber receives a timetable city slug, year, and month instead |
 | City search text | Find a city or country/city combination | Sent to Apple's geocoding service; query/results can remain temporarily in app memory |
 | Compass heading and accuracy | Show the direction toward the Kaaba | Used on-device; no app code sends heading data to the developer or content providers |
 | Surah/ayah references, translation choice, and language | Retrieve Quran content | Sent in requests to Quran.com / Quran Foundation; the provider also receives ordinary request/connection information such as IP address |
 | Reading position and Quran favorite references | Continue reading and reopen saved surahs/ayahs | Stored on-device with surah display metadata; not intentionally uploaded by this app |
 | Reading size/mode, appearance, calculation method, madhab, and adjustments | Apply your preferences | Stored on-device; calculation settings are included in relevant AlAdhan requests |
-| Notification preferences and scheduled reminders | Prayer and daily Quran reminders | Stored on-device and scheduled with Apple's local notification system |
+| Notification preferences and scheduled reminders | Prayer, optional sunrise, and daily Quran reminders | Stored on-device and scheduled with Apple's local notification system |
 | Copied or shared verse text | Your explicit copy/share action | Written to the system clipboard or passed to the destination you choose |
 
-Manually selecting a city avoids using GPS for that selection, but city search still requires Apple geocoding, and remote prayer-time requests still send the selected city's coordinates to AlAdhan.
+Manually selecting a city avoids using GPS for that selection, but city search still requires Apple geocoding, and AlAdhan requests still send the selected city's coordinates. If you select the optional QMİ/Minber timetable instead, Minber receives only the timetable city slug, year, and month; coordinates, madhab, and minute adjustments are not sent to Minber.
 
 ## 3. External services
 
 The current build contacts these services directly from your device:
 
-- **AlAdhan:** receives prayer location, requested date, calculation method, madhab, and minute adjustments. See [AlAdhan's credits and terms](https://aladhan.com/credits-and-terms).
+- **AlAdhan:** receives prayer location, requested date, calculation method, madhab, and minute adjustments for prayer times and sunrise. See [AlAdhan's credits and terms](https://aladhan.com/credits-and-terms).
+- **Minber.az (optional QMİ timetable):** receives a request for its city directory and the selected timetable city slug, year, and month for prayer times and sunrise, plus ordinary connection information such as IP address. GPS coordinates, madhab, manual adjustments, and notification preferences are not sent to Minber. Monthly responses are reused briefly in memory; daily prayer times use the existing on-device prayer cache. See [Minber prayer times](https://namaz.minber.az/).
 - **Quran.com / Quran Foundation:** receives requested content references and translation/language parameters. See [Quran.com's privacy policy](https://quran.com/privacy) and [Quran Foundation's developer terms](https://api-docs.quran.com/legal/developer-terms/).
 - **Apple:** provides location authorization, geocoding, local notifications, and operating-system services. See [Apple's privacy information](https://www.apple.com/legal/privacy/).
 
@@ -40,7 +41,7 @@ Adhan Swift calculates prayer times on-device; the calculation library does not 
 
 ## 4. Local storage, retention, and deletion
 
-Preferences, selected locations, saved cities, reading progress, and Quran favorite references are stored in the app's local UserDefaults. Fetched prayer times are cached as JSON files in the app's Application Support directory. Quran responses are fetched online and are not saved as an offline content cache. The daily ayah widget stores a verse reference, without Arabic or translation text. Shared widget files are excluded from backup. These local files/settings may be included in backups according to your device and Apple's backup settings; the app does not implement its own iCloud synchronization.
+Preferences, selected locations, saved cities, reading progress, and Quran favorite references are stored in the app's local UserDefaults. Fetched prayer times and available sunrise times are cached as JSON files in the app's Application Support directory. Quran responses are fetched online and are not saved as an offline content cache. The daily ayah widget stores a verse reference, without Arabic or translation text. Shared widget files are excluded from backup. These local files/settings may be included in backups according to your device and Apple's backup settings; the app does not implement its own iCloud synchronization.
 
 Current local preferences and saved references remain until you change/remove them or remove the app. Favorite entries can be removed through the app's star/edit controls. Removing the app removes its local app container, subject to Apple's offloading, backup, and restore behavior; offloading an app is different from deleting it.
 
@@ -52,7 +53,7 @@ Reading-position and favorite saves contain references and display metadata rath
 
 Notifications are local notifications scheduled on the device through Apple's UserNotifications framework. This implementation does not register for remote push notifications or send a push device token to a developer server.
 
-You can allow or disable notifications in iOS Settings and change reminder preferences in the app. Prayer reminders currently cover a rolling seven-day window refreshed when the app becomes active or relevant settings change. The daily Quran reminder repeats at 08:00 local time. Permission settings, Focus, system notification configuration, and device state can affect delivery and sound.
+You can allow or disable notifications in iOS Settings and change reminder preferences in the app. Prayer reminders and the optional sunrise reminder cover a rolling seven-day window refreshed when the app becomes active or relevant settings change. Sunrise reminders are off by default and can be enabled independently in Settings; previous preferences retain their existing prayer settings when upgrading. Sunrise uses the selected source or local calculation and the prayer location’s timezone. If a sunrise time is unavailable or already past, no sunrise reminder is scheduled for that date. Sunrise does not change the five-prayer countdown. Turning its toggle off cancels pending sunrise reminders. The selected notification sound and iOS authorization apply to both prayer and sunrise alerts. No notification preference is sent to a content provider. The daily Quran reminder repeats at 08:00 local time. Permission settings, Focus, system notification configuration, and device state can affect delivery and sound.
 
 ## Home Screen widgets
 

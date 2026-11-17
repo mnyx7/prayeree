@@ -101,6 +101,7 @@ final class PrayerTimesStore {
         let adjustment: PrayerAdjustment
         let coordinates: Coordinates?
         let locationMode: LocationSourceMode
+        let timetableCity: City?
     }
 
     var refreshTrigger: RefreshTrigger {
@@ -109,7 +110,8 @@ final class PrayerTimesStore {
             madhab: appStore.state.madhab,
             adjustment: appStore.state.prayerAdjustment,
             coordinates: resolvedCoordinates,
-            locationMode: locationSourceMode
+            locationMode: locationSourceMode,
+            timetableCity: appStore.state.calculationMethod == .qmiMinber ? appStore.state.selectedCity : nil
         )
     }
 
@@ -276,6 +278,7 @@ final class PrayerTimesStore {
             calculationMethod: appStore.state.calculationMethod,
             madhab: appStore.state.madhab,
             adjustment: appStore.state.prayerAdjustment,
+            city: appStore.state.selectedCity,
             timeZoneIdentifier: prayerTimeZoneIdentifier
         )
         loadTask = Task { [weak self] in
@@ -303,6 +306,12 @@ final class PrayerTimesStore {
     }
 
     private func message(for error: NetworkError?) -> String {
+        if appStore.state.calculationMethod == .qmiMinber {
+            switch error {
+            case .invalidResponse?, .decodingFailed?: return String(localized: LocalizedKey.Settings.minberUnavailable)
+            default: break
+            }
+        }
         switch error {
         case .none:
             return String(localized: LocalizedKey.Common.genericLoadError())

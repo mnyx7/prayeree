@@ -38,8 +38,28 @@ struct AboutUsView: View {
                 Link("Quran data provided by Quran.Foundation.", destination: URL(string: "https://quran.foundation")!)
                 Text("Translation credits appear with Quran content. Text and translations belong to their respective rights holders.")
                     .font(.footnote)
+                Text(LocalizedKey.Settings.sunriseAbout)
+                    .font(.footnote)
+                    .foregroundStyle(AppColor.textSecondary)
             } header: {
                 Text(LocalizedKey.Settings.aboutSection)
+            }
+
+            Section {
+                Link(destination: URL(string: "https://aladhan.com/prayer-times-api")!) {
+                    Text(LocalizedKey.Settings.creditAladhan)
+                }
+                Link(destination: URL(string: "https://namaz.minber.az/")!) {
+                    Text(LocalizedKey.Settings.creditMinber)
+                }
+                Text(LocalizedKey.Settings.minberSourceNote)
+                    .font(.footnote)
+                    .foregroundStyle(AppColor.textSecondary)
+                Link(destination: URL(string: "https://github.com/batoulapps/adhan-swift")!) {
+                    Text(LocalizedKey.Settings.creditAdhan)
+                }
+            } header: {
+                Text(LocalizedKey.Settings.dataSources)
             }
         }
         .navigationTitle(Text(LocalizedKey.Settings.aboutUs))

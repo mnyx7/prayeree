@@ -10,11 +10,36 @@
             "state" : "new",
             "value" : "%1$@:%2$@"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@:%2$@"
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@:%2$@"
+          }
         }
       }
     },
     "Ayah %@" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Аят %@"
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayə %@"
+          }
+        }
+      }
     },
     "Ayah %lld" : {
       "extractionState" : "manual",
@@ -29,6 +54,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ayah %lld"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Аят %lld"
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayə %lld"
           }
         }
       }
@@ -47,6 +84,18 @@
             "state" : "translated",
             "value" : "Ayah of the Day"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Аят дня"
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Günün ayəsi"
+          }
         }
       }
     },
@@ -63,6 +112,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Continue reading"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Продолжить чтение"
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oxumağa davam et"
           }
         }
       }
@@ -81,6 +142,18 @@
             "state" : "translated",
             "value" : "Keep today's Quran verse on your Home Screen."
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавьте сегодняшний аят Корана на экран «Домой»."
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bugünkü Quran ayəsini əsas ekranınızda saxlayın."
+          }
         }
       }
     },
@@ -97,6 +170,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Next prayer"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Следующий намаз"
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Növbəti namaz"
           }
         }
       }
@@ -115,6 +200,18 @@
             "state" : "translated",
             "value" : "Open Quran or connect to the internet to load today's ayah."
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Откройте Коран или подключитесь к интернету, чтобы загрузить сегодняшний аят."
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bugünkü ayəni yükləmək üçün Quranı açın və ya internetə qoşulun."
+          }
         }
       }
     },
@@ -132,6 +229,18 @@
             "state" : "translated",
             "value" : "Open the app to set or refresh your location."
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Откройте приложение, чтобы задать или обновить геопозицию."
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Məkanınızı təyin etmək və ya yeniləmək üçün tətbiqi açın."
+          }
         }
       }
     },
@@ -147,6 +256,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Open today's ayah"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открыть аят дня"
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Günün ayəsini aç"
           }
         }
       }
@@ -165,6 +286,18 @@
             "state" : "translated",
             "value" : "Open today's ayah from its daily reference."
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Откройте сегодняшний аят по его номеру суры и аята."
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bugünkü ayəni surə və ayə nömrəsinə görə açın."
+          }
         }
       }
     },
@@ -181,6 +314,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Prayer times"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Время намазов"
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Namaz vaxtları"
           }
         }
       }
@@ -199,6 +344,18 @@
             "state" : "translated",
             "value" : "Asr"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Аср"
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Əsr"
+          }
         }
       }
     },
@@ -215,6 +372,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dhuhr"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зухр"
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zöhr"
           }
         }
       }
@@ -233,6 +402,18 @@
             "state" : "translated",
             "value" : "Fajr"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фаджр"
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sübh"
+          }
         }
       }
     },
@@ -249,6 +430,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Isha"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Иша"
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İşa"
           }
         }
       }
@@ -267,12 +460,38 @@
             "state" : "translated",
             "value" : "Maghrib"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Магриб"
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Məğrib"
+          }
         }
       }
     },
     "Quran.Foundation" : {
       "comment" : "The name of the Quran app.",
-      "isCommentAutoGenerated" : true
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quran.Foundation"
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quran.Foundation"
+          }
+        }
+      }
     },
     "Read a surah in the app to save your place." : {
       "extractionState" : "manual",
@@ -287,6 +506,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Read a surah in the app to save your place."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Прочитайте суру в приложении, чтобы сохранить место чтения."
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oxuduğunuz yeri yadda saxlamaq üçün tətbiqdə bir surə oxuyun."
           }
         }
       }
@@ -305,6 +536,18 @@
             "state" : "translated",
             "value" : "Return to the surah and ayah where you stopped."
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вернитесь к суре и аяту, на которых остановились."
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dayandığınız surə və ayəyə qayıdın."
+          }
         }
       }
     },
@@ -321,6 +564,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "See the next namaz and your daily prayer schedule."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Следите за следующим намазом и ежедневным расписанием молитв."
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Növbəti namazı və gündəlik namaz cədvəlinizi görün."
           }
         }
       }
@@ -340,6 +595,18 @@
             "state" : "translated",
             "value" : "Tap to read Quran online."
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нажмите, чтобы читать Коран онлайн."
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quranı onlayn oxumaq üçün toxunun."
+          }
         }
       }
     },
@@ -356,6 +623,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tap to resume"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нажмите, чтобы продолжить"
+          }
+        },
+        "az" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Davam etmək üçün toxunun"
           }
         }
       }

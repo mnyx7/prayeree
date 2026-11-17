@@ -19,5 +19,11 @@ protocol PrayerNotificationScheduling: AnyObject {
         soundName: String?,
         content: @escaping @Sendable (PrayerName) -> (title: String, body: String)
     ) async
+    func rescheduleSunrise(
+        for prayerTimesByDate: [PrayerTimes],
+        isEnabled: Bool,
+        soundName: String?,
+        content: @escaping @Sendable () -> (title: String, body: String)
+    ) async
     func cancelAll() async
 }

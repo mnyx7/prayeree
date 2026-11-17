@@ -38,7 +38,7 @@ After installing and opening the app, choose a prayer location, open Quran, and 
 
 ### Prayer times
 
-The app publishes seven days of on-device prayer calculations using the current location, method, madhab, timezone, and adjustments. Fresh prayer data loaded by the app can update the corresponding day. Widget timelines advance at prayer boundaries and local midnight without needing a network request for each change. The medium widget includes the day's five prayer times.
+For calculated methods, the app publishes seven days of on-device prayer calculations using the current location, method, madhab, timezone, and adjustments. With QMİ/Minber selected, published timetable days loaded by the app populate the forecast instead; no other calculation method is substituted. Fresh prayer data loaded by the app can update the corresponding day. Widget timelines advance at prayer boundaries and local midnight without needing a network request for each change. The medium widget includes the day's five prayer times. Sunrise appears in the app and can have its own Settings reminder; it is not added as a sixth prayer to the widget countdown.
 
 The widget uses the last location/settings supplied by the app; it does not request GPS permission or track location itself. Reopen the app to refresh the forecast after travel or once the seven-day forecast runs out. Expired forecasts show an open-app prompt rather than old times presented as current.
 

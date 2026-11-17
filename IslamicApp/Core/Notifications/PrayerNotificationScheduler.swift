@@ -12,6 +12,7 @@ import UserNotifications
 final class PrayerNotificationScheduler: PrayerNotificationScheduling {
     private let notificationManager: any NotificationManaging
     private static let identifierPrefix = "prayer."
+    private static let sunrisePrefix = "sunrise."
 
     init(notificationManager: any NotificationManaging) {
         self.notificationManager = notificationManager
@@ -55,9 +56,50 @@ final class PrayerNotificationScheduler: PrayerNotificationScheduling {
         }
     }
 
-    func cancelAll() async {
+    func rescheduleSunrise(
+        for prayerTimesByDate: [PrayerTimes],
+        isEnabled: Bool,
+        soundName: String?,
+        content: @escaping @Sendable () -> (title: String, body: String)
+    ) async {
+        guard !Task.isCancelled else { return }
         let identifiers = await notificationManager.pendingNotificationIdentifiers()
-            .filter { $0.hasPrefix(Self.identifierPrefix) }
+            .filter { $0.hasPrefix(Self.sunrisePrefix) }
+        await notificationManager.cancelNotifications(withIdentifiers: identifiers)
+        guard isEnabled, !Task.isCancelled else { return }
+
+        let now = Date()
+        let sound = soundName.map { UNNotificationSound(named: UNNotificationSoundName($0)) }
+        let text = content()
+        for day in prayerTimesByDate {
+            guard !Task.isCancelled else { return }
+            guard let sunrise = day.sunrise, sunrise > now else { continue }
+            var calendar = Calendar(identifier: .gregorian)
+            calendar.timeZone = day.timeZone
+            var components = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: sunrise)
+            components.timeZone = day.timeZone
+            try? await notificationManager.schedule(
+                identifier: Self.sunriseIdentifier(for: day.date, timeZone: day.timeZone),
+                title: text.title, body: text.body, sound: sound,
+                dateComponents: components, repeats: false
+            )
+        }
+    }
+
+    static func sunriseIdentifier(for date: Date, timeZone: TimeZone = .current) -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.calendar = Calendar(identifier: .gregorian)
+        formatter.dateFormat = "yyyyMMdd"
+        formatter.timeZone = timeZone
+        return "\(sunrisePrefix)\(formatter.string(from: date))"
+    }
+
+    func cancelAll() async {
+        guard !Task.isCancelled else { return }
+        let identifiers = await notificationManager.pendingNotificationIdentifiers()
+            .filter { $0.hasPrefix(Self.identifierPrefix) || $0.hasPrefix(Self.sunrisePrefix) }
+        guard !Task.isCancelled else { return }
         await notificationManager.cancelNotifications(withIdentifiers: identifiers)
     }
 

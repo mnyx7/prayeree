@@ -124,6 +124,7 @@ final class AppStore {
             persistCities()
             persist()
             environment.widgetPublisher?.publishPrayers(state: state)
+            if state.calculationMethod == .qmiMinber { rescheduleNotificationsIfNeeded() }
 
         case .coordinatesResolved(let coordinates):
             state.resolvedCoordinates = coordinates
@@ -184,7 +185,16 @@ final class AppStore {
     private func rescheduleNotificationsIfNeeded() {
         environment.widgetPublisher?.publishPrayers(state: state)
         rescheduleTask?.cancel()
-        guard [.authorized, .provisional, .ephemeral].contains(state.notificationAuthorizationStatus) else { return }
+        guard [.authorized, .provisional, .ephemeral].contains(state.notificationAuthorizationStatus) else {
+            // Remove queued location reminders even if iOS permission was revoked.
+            rescheduleTask = Task { [weak self] in
+                guard let self, !Task.isCancelled else { return }
+                await self.environment.prayerNotificationScheduler.cancelAll()
+                guard !Task.isCancelled else { return }
+                self.scheduledNotificationCount = await self.environment.notificationManager.pendingNotificationIdentifiers().count
+            }
+            return
+        }
         let coordinates = state.resolvedCoordinates
 
         let timeZoneIdentifier: String
@@ -194,6 +204,7 @@ final class AppStore {
             timeZoneIdentifier = TimeZone.current.identifier
         }
         let calculationMethod = state.calculationMethod
+        let timetableCity = state.selectedCity
         let madhab = state.madhab
         let adjustment = state.prayerAdjustment
         let prayerPreference = environment.preferencesStore.value(
@@ -222,9 +233,11 @@ final class AppStore {
                         calculationMethod: calculationMethod,
                         madhab: madhab,
                         adjustment: adjustment,
-                        timeZoneIdentifier: timeZoneIdentifier
+                        timeZoneIdentifier: timeZoneIdentifier,
+                        city: timetableCity
                     ) {
                         prayerTimesByDate.append(prayerTimes)
+                        if calculationMethod == .qmiMinber { self.environment.widgetPublisher?.publishPrayerTimes(prayerTimes) }
                     }
                 }
                 guard !Task.isCancelled else { return }
@@ -239,6 +252,15 @@ final class AppStore {
                             title: String(localized: LocalizedKey.PrayerTimes.notificationTitle(prayer: displayName)),
                             body: String(localized: LocalizedKey.PrayerTimes.notificationBody(prayer: displayName))
                         )
+                    }
+                )
+                await self.environment.prayerNotificationScheduler.rescheduleSunrise(
+                    for: prayerTimesByDate,
+                    isEnabled: prayerPreference.isSunriseEnabled,
+                    soundName: soundName,
+                    content: {
+                        (title: String(localized: LocalizedKey.PrayerTimes.sunrise),
+                         body: String(localized: LocalizedKey.PrayerTimes.sunriseNotificationBody))
                     }
                 )
             } else {
@@ -269,7 +291,8 @@ final class AppStore {
         calculationMethod: PrayerCalculationMethod,
         madhab: MadhabOption,
         adjustment: PrayerAdjustment,
-        timeZoneIdentifier: String
+        timeZoneIdentifier: String,
+        city: City?
     ) async -> PrayerTimes? {
         if let local = LocalPrayerTimesCalculator.calculate(dateComponents: dateComponents,
             coordinates: coordinates, calculationMethod: calculationMethod, madhab: madhab,
@@ -283,6 +306,7 @@ final class AppStore {
             calculationMethod: calculationMethod,
             madhab: madhab,
             adjustment: adjustment,
+            city: city,
             timeZoneIdentifier: timeZoneIdentifier
         )
         for await result in stream {

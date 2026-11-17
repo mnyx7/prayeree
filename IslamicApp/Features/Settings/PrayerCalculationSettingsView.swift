@@ -35,8 +35,11 @@ struct PrayerCalculationSettingsView: View {
                     Text(LocalizedKey.Settings.madhabHanafi).tag(MadhabOption.hanafi)
                 }
                 .pickerStyle(.segmented)
+                .disabled(store.calculationMethod == .qmiMinber)
             } header: {
                 Text(LocalizedKey.Settings.asrMadhabSection)
+            } footer: {
+                if store.calculationMethod == .qmiMinber { Text(LocalizedKey.Settings.minberExplanation) }
             }
         }
         .navigationTitle(Text(LocalizedKey.Settings.prayerSettingsSection))

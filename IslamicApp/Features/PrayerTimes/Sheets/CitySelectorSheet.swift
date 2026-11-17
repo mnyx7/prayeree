@@ -111,7 +111,7 @@ struct CitySelectorSheet: View {
                     } label: {
                         VStack(alignment: .leading) {
                             cityLabel(city)
-                            Text(Locale.current.localizedString(forRegionCode: city.countryCode) ?? city.countryCode)
+                            Text(LocalizationManager.locale.localizedString(forRegionCode: city.countryCode) ?? city.countryCode)
                                 .font(.caption)
                                 .foregroundStyle(AppColor.textSecondary)
                         }
